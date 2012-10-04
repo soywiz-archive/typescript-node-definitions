@@ -1,0 +1,170 @@
+/// <reference path="node.d.ts" />
+
+/*
+
+How to use:
+
+import express3 = module("express3");
+var express:() => express3.Application = require('express');
+var app = express();
+
+*/
+
+declare module "express3" {
+    //declare function callHack(): app;
+
+    interface Application {
+        set(name: String, value:any):any;
+        get(name: String):any;
+
+        enable(name: String):void;
+        disable(name: String):void;
+
+        enabled(name: String):bool;
+        disabled(name: String):bool;
+
+        configure(callback: () => void):void;
+        configure(env: String, callback: () => void):void;
+
+        engine(ext: String, callback:(path:String, options: any, callback: any) => void):void;
+
+        param(callback: (req: Request, res: Response, next, id) => void);
+        param(name: String, callback: (req: Request, res: Response, next, id) => void);
+
+        get(path:String, callback:(req: Request, res: Response) => void);
+        post(path:String, callback:(req: Request, res: Response) => void);
+        all(path:String, callback:(req: Request, res: Response) => void);
+
+        locals: any;
+
+        render(view: String, options: any, callback: (err, html) => void);
+
+        routes: any;
+
+        listen(port: number):void;
+
+        router:(req: Request, res: Response, next?: Function) => void;
+
+        // More:
+        use(item: (req: Request, res: Response, next?: Function) => void): Application;
+
+        // connect Middlewares:
+        static(path: String): (req: Request, res: Response, next?: Function) => void;
+        favicon(): (req: Request, res: Response, next?: Function) => void;
+    }
+
+    interface Request {
+        params: Object;
+        query: Object;
+        body: Object;
+        files: Object /*<RequestFileBody>*/;
+
+        param(name: String): any;
+        route: RequestRoute;
+        cookies: any;
+        signedCookies: any;
+        get(name: String): any;
+        
+        accepts(type: String): void;
+        accepts(type: String[]): void;
+        accepted: RequestAccepted[];
+
+        is(type: String): bool;
+        ip: String;
+        ips: String[];
+        path: String;
+        host: String;
+        fresh: bool;
+        stale: bool;
+        xhr: bool;
+        protocol: String;
+        secure: bool;
+        subdomains: String[];
+        acceptedLanguages: String[];
+        acceptedCharsets: String[];
+        acceptsCharset(charset: String): bool;
+        acceptsLanguage(lang: String): bool;
+    }
+
+    interface RequestAccepted {
+        value: String;
+        quality: number;
+        type: String;
+        subtype: String;
+    }
+
+    interface RequestRoute {
+        path: String;
+        method: String;
+        callbacks: Function[];
+        keys: any;
+        regexp: RegExp;
+        params: any;
+    }
+
+    interface RequestFileBody {
+        size: number;
+    }
+
+    interface Response {
+        status(code: number): Response;
+        
+        set(field: Object): Response;
+        set(field: String, value: String): Response;
+        
+        get(field: String): String;
+
+        cookie(name: String, value: String, options?: ResponseCookieOptions): Response;
+        clearCookie(name: String, options?: ResponseCookieOptions): Response;
+
+        redirect(url: String): Response;
+        redirect(status: number, url: String): Response;
+
+        charset: String;
+
+        send(body: any): Response;
+        send(status: number, body?: any): Response;
+
+        json(body: any): Response;
+        json(status: number, body?: any): Response;
+
+        jsonp(body: any): Response;
+        jsonp(status: number, body?: any): Response;
+
+        type(type: String): Response;
+
+        format(object: Object): Response;
+
+        attachment(filename?: String): Response;
+
+        sendfile(path: String, options?: ResponseSendfileOptions, fn?: (err?) => void): Response;
+        download(path: String, filename?: String, fn?: (err?) => void): Response;
+        links(links: Object);
+
+        locals: Object;
+
+        render(view: String, callback: (err, html: String) => void);
+        render(view: String, locals: Object, callback: (err, html: String) => void);
+    }
+
+    interface ResponseSendfileOptions {
+        maxAge?: number;
+        root?: string;
+    }
+
+    interface ResponseCookieOptions {
+        domain?: String;
+        path?: String;
+        secure?: bool;
+        expires?: Date;
+        maxAge?: number;
+        httpOnly?: bool;
+        signed?: bool;
+    }
+}
+
+declare module "http" {
+    import express3 = module("express3");
+    
+    export function createServer(app: express3.Application): Server;
+}
