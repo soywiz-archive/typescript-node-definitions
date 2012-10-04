@@ -5,15 +5,17 @@
 How to use:
 
 import express3 = module("express3");
-var express:() => express3.Application = require('express');
-var app = express();
+var express:any = require('express');
+var app:express3.Application = express();
 
 */
 
 declare module "express3" {
     //declare function callHack(): app;
 
-    interface Application {
+    //export var app: Application;
+
+    interface Application extends Function {
         set(name: String, value:any):any;
         get(name: String):any;
 
@@ -49,8 +51,8 @@ declare module "express3" {
         use(item: (req: Request, res: Response, next?: Function) => void): Application;
 
         // connect Middlewares:
-        static(path: String): (req: Request, res: Response, next?: Function) => void;
-        favicon(): (req: Request, res: Response, next?: Function) => void;
+        //static(path: String): (req: Request, res: Response, next?: Function) => void;
+        //favicon(): (req: Request, res: Response, next?: Function) => void;
     }
 
     interface Request {
@@ -144,7 +146,7 @@ declare module "express3" {
         locals: Object;
 
         render(view: String, callback: (err, html: String) => void);
-        render(view: String, locals: Object, callback: (err, html: String) => void);
+        render(view: String, locals: Object, callback?: (err, html: String) => void);
     }
 
     interface ResponseSendfileOptions {
@@ -165,6 +167,6 @@ declare module "express3" {
 
 declare module "http" {
     import express3 = module("express3");
-    
-    export function createServer(app: express3.Application): Server;
+
+    export function createServer(app: any): Server;
 }
