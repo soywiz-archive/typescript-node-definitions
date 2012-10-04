@@ -5,8 +5,8 @@
 How to use:
 
 import express3 = module("express3");
-var express:any = require('express');
-var app:express3.Application = express();
+var express:express3.Application = require('express');
+var app = express();
 
 */
 
@@ -16,6 +16,9 @@ declare module "express3" {
     //export var app: Application;
 
     interface Application extends Function {
+        // Constructor
+        (): Application;
+
         set(name: String, value:any):any;
         get(name: String):any;
 
