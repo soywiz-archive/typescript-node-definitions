@@ -4,6 +4,9 @@ for TypeScript language in order to have autocomplete support.
 It would be great if the creators of node modules, include definition files
 directly on their projects. In the meanwhile this project will do the job. 
 
+Initial definition files are from the TypeScript project "samples" folder, that
+can be found here: https://typescript.codeplex.com/SourceControl/BrowseLatest
+
 You can perform pull requests improving definitions or adding new ones.
 I will add them ASAP.
 
