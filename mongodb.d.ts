@@ -15,10 +15,10 @@ declare module "mongodb" {
         public collectionsInfo(collectionName: string, callback?: (err, result) => void);
         public collectionNames(collectionName: string, options: any, callback?: (err, result) => void);
 
-        public collection(collectionName: string, callback: (err: any, collection: MongoCollection) => void);
-        public collection(collectionName: string, options: MongoCollectionOptions, callback: (err: any, collection: MongoCollection) => void);    
+        public collection(collectionName: string, callback: (err: any, collection: Collection) => void);
+        public collection(collectionName: string, options: MongoCollectionOptions, callback: (err: any, collection: Collection) => void);    
 
-        public collections(callback: (err: any, collections: MongoCollection[]) => void);
+        public collections(callback: (err: any, collections: Collection[]) => void);
         public eval(code: any, parameters: any[], options?: any, callback?: (err, result) => void);
         //public dereference(dbRef: DbRef, callback: (err, result) => void);
         
@@ -79,35 +79,117 @@ declare module "mongodb" {
 
         public DEFAULT_URL: string;
 
-        public connect(url: string, options: { uri_decode_auth: bool; }, callback: (err, result) => void);
+        public connect(url: string, options: { uri_decode_auth?: bool; }, callback: (err, result) => void);
 
     }
     export class ObjectID {
         constructor(s: string);
     }
-}
 
-interface MongoCollectionOptions {
-    safe?: any;
-    serializeFunctions?: any;
-    raw?: bool;
-    pkFactory?: any;
-    readPreferences?: string;
-}
+    export interface Collection {
+        //constructor (db: Db, collectionName: string, pkFactory, options);
 
-interface MongoDb {
-    
-}
+        insert(query: any, callback: (err: any, result: any) => void): void;
+        insert(query: any, options: { safe?: any; continueOnError?: bool; keepGoing?: bool; serializeFunctions?: bool; }, callback: (err: any, result: any) => void): void;
 
-interface MongoCollection {
-    find(query: any): MongoCursor;
-    find(query: any, callback?: (err: any, result: MongoCursor) => void): MongoCursor;
-    find(query: any, select: any, callback?: (err: any, result: MongoCursor) => void): MongoCursor;
-    findOne(query: any, callback: (err: any, result: any) => void): void;
-    update(query: any, updates: any, callback: (err: any, result: any) => void): void;
-    insert(query: any, callback: (err: any, result: any) => void): void;
-}
+        remove(selector, callback?: (err: any, result: any) => void);
+        remove(selector, options: { safe?: any; single?: bool; }, callback?: (err: any, result: any) => void);
 
-interface MongoCursor {
-    toArray(callback: (err: any, results: any[]) => void);
+        rename(newName: String, callback?: (err, result) => void);
+
+        save(doc: any, callback : (err, result) => void);
+        save(doc: any, options: { safe: any; }, callback : (err, result) => void);
+
+        update(selector: any, document: any, callback: (err: any, result: any) => void): void;
+        update(selector: any, document: any, options: { safe; upsert; multi; serializeFunctions; }, callback: (err: any, result: any) => void): void;
+
+        distinct(key: string, query: Object, callback: (err, result) => void);
+        distinct(key: string, query: Object, options: { readPreferences; }, callback: (err, result) => void);
+
+        count(query: Object, callback: (err, result) => void);
+        count(query: Object, options: { readPreferences; }, callback: (err, result) => void);
+
+        drop(callback?: (err, result) => void);
+
+        findAndModify(query: Object, sort: any[], doc: Object, callback: (err, result) => void);
+        findAndModify(query: Object, sort: any[], doc: Object, options: { safe: any; remove: bool; upsert: bool; new: bool; }, callback: (err, result) => void);
+
+        findAndRemove(query : Object, sort? : any[], callback?: (err, result) => void);
+        findAndRemove(query : Object, sort? : any[], options?: { safe; }, callback?: (err, result) => void);
+
+        find(callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, fields: any, callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, options: CollectionFindOptions, callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, fields: any, options: CollectionFindOptions, callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, fields: any, skip: number, limit: number, callback?: (err: any, result: Cursor) => void): Cursor;
+        find(selector: any, fields: any, skip: number, limit: number, timeout: number, callback?: (err: any, result: Cursor) => void): Cursor;
+
+        findOne(callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, fields: any, callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, options: CollectionFindOptions, callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, fields: any, options: CollectionFindOptions, callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, fields: any, skip: number, limit: number, callback?: (err: any, result: Cursor) => void): Cursor;
+        findOne(selector: any, fields: any, skip: number, limit: number, timeout: number, callback?: (err: any, result: Cursor) => void): Cursor;
+
+        createIndex(fieldOrSpec, options, callback);
+        ensureIndex(fieldOrSpec, options, callback);
+        indexInformation(options, callback);
+        dropIndex(name, callback);
+        dropAllIndexes(callback);
+        // dropIndexes = dropAllIndexes
+
+        reIndex(callback);
+        mapReduce(map, reduce, options, callback);
+        group(keys, condition, initial, reduce, finalize, command, options, callback);
+        options(callback);
+        isCapped(callback);
+        indexExists(indexes, callback);
+        geoNear(x, y, options, callback);
+        geoHaystackSearch(x, y, options, callback);
+        indexes(callback);
+        aggregate(pipeline, options, callback);
+        stats(options, callback);
+
+        hint;
+    }
+
+    export interface Cursor {
+        toArray(callback: (err: any, results: any[]) => void);
+    }
+
+    export interface CollectionFindOptions {
+        limit;
+        sort;
+        fields;
+        skip;
+        hint;
+        explain;
+        snapshot;
+        timeout;
+        tailtable;
+        tailableRetryInterval;
+        numberOfRetries;
+        awaitdata;
+        exhaust;
+        batchSize;
+        returnKey;
+        maxScan;
+        min;
+        max;
+        showDiskLoc;
+        comment;
+        raw;
+        readPreferences;
+        partial;
+    }
+
+    export interface MongoCollectionOptions {
+        safe?: any;
+        serializeFunctions?: any;
+        raw?: bool;
+        pkFactory?: any;
+        readPreferences?: string;
+    }
 }
