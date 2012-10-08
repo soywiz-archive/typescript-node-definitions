@@ -5,8 +5,8 @@
 How to use:
 
 import express3 = module("express3");
-var express:express3.Application = require('express');
-var app = express();
+var express = require('express');
+var app:express3.Application = express();
 
 */
 
