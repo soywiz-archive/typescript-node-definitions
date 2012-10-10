@@ -172,7 +172,7 @@ declare module "mongodb" {
 		save(doc: any, callback : (err, result) => void);
 		save(doc: any, options: { safe: any; }, callback : (err, result) => void);
 		
-		update(selector: any, document: any, callback: (err: any, result: any) => void): void;
+		update(selector: any, document: any, callback?: (err: any, result: any) => void): void;
 		update(selector: any, document: any, options: { safe; upsert; multi; serializeFunctions; }, callback: (err: any, result: any) => void): void;
 		
 		distinct(key: string, query: Object, callback: (err, result) => void);
@@ -221,7 +221,7 @@ declare module "mongodb" {
 		geoNear(x, y, options, callback);
 		geoHaystackSearch(x, y, options, callback);
 		indexes(callback);
-		aggregate(pipeline, options, callback);
+		aggregate(pipeline:any[], options, callback);
 		stats(options, callback);
 		
 		hint;
@@ -229,6 +229,7 @@ declare module "mongodb" {
 
 	export interface Cursor {
 		toArray(callback: (err: any, results: any[]) => void);
+		nextObject(callback: (err:any,doc:any) => void);
 	}
 
 	export interface CollectionFindOptions {
