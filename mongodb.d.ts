@@ -91,22 +91,22 @@ declare module "mongodb" {
 
 	interface SocketOptions {
 		//= set seconds before connection times out default:0
-		timeout: number;
+		timeout?: number;
 		//= Disables the Nagle algorithm default:true
-		noDelay: bool;
+		noDelay?: bool;
 		//= Set if keepAlive is used default:0 , which means no keepAlive, set higher than 0 for keepAlive
-		keepAlive: number;
+		keepAlive?: number;
 		//= ‘ascii’|’utf8’|’base64’ default:null
 		encoding?: string;
 	}
 
 	interface ServerOptions {
 		// - to reconnect automatically, default:false
-		auto_reconnect: bool;
+		auto_reconnect?: bool;
 		// - specify the number of connections in the pool default:1
-		poolSize: number;
+		poolSize?: number;
 		// - a collection of pr socket settings
-		socketOptions: any;
+		socketOptions?: any;
 	}
 
 	interface PKFactory {
@@ -116,46 +116,46 @@ declare module "mongodb" {
 
 	interface DBOptions {
 		//- if true, use native BSON parser
-		native_parser: bool;
+		native_parser?: bool;
 		//- sets strict mode , if true then existing collections can’t be “recreated” etc.
-		strict: bool;
+		strict?: bool;
 		//- custom primary key factory to generate _id values (see Custom primary keys).
-		pk: PKFactory;
+		pk?: PKFactory;
 		//- generation of objectid is delegated to the mongodb server instead of the driver. default is false
-		forceServerObjectId: bool;
+		forceServerObjectId?: bool;
 		//- specify the number of milliseconds between connection attempts default:5000
-		retryMiliSeconds: number;
+		retryMiliSeconds?: number;
 		//- specify the number of retries for connection attempts default:3
-		numberOfRetries: number;
+		numberOfRetries?: number;
 		//- enable/disable reaper (true/false) default:false
-		reaper: bool;
+		reaper?: bool;
 		//- specify the number of milliseconds between each reaper attempt default:10000
-		reaperInterval: number;
+		reaperInterval?: number;
 		//- specify the number of milliseconds for timing out callbacks that don’t return default:30000
-		reaperTimeout: number;
+		reaperTimeout?: number;
 		//- driver expects Buffer raw bson document, default:false
-		raw: bool;
+		raw?: bool;
 	}
 
 	interface CollectionCreateOptions {
 		// {true | {w:n, wtimeout:n} | {fsync:true}, default:false}, executes with a getLastError command returning the results of the command on MongoDB.
-		safe: bool;
+		safe?: bool;
 		// {Boolean, default:false}, serialize functions on the document.
-		serializeFunctions: bool;
+		serializeFunctions?: bool;
 		// {Boolean, default:false}, perform all operations using raw bson objects.
-		raw: bool; 
+		raw?: bool; 
 		// object overriding the basic ObjectID primary key generation.
-		pkFactory: PKFactory;
+		pkFactory?: PKFactory;
 		// {Boolean, default:false}, create a capped collection.
-		capped: bool;
+		capped?: bool;
 		// {Number}, the size of the capped collection in bytes. 
-		size: number;
+		size?: number;
 		// {Number}, the maximum number of documents in the capped collection.
-		max: number;
+		max?: number;
 		// {Boolean, default:false}, create an index on the _id field of the document, not created automatically on capped collections.
-		autoIndexId: bool;
+		autoIndexId?: bool;
 		// {String}, the prefered read preference (ReadPreference.PRIMARY, ReadPreference.PRIMARY_PREFERRED, ReadPreference.SECONDARY, ReadPreference.SECONDARY_PREFERRED, ReadPreference.NEAREST).
-		readPreference: string; 
+		readPreference?: string; 
 	}
 
 	export interface Collection {
@@ -233,29 +233,29 @@ declare module "mongodb" {
 	}
 
 	export interface CollectionFindOptions {
-		limit;
-		sort;
-		fields;
-		skip;
-		hint;
-		explain;
-		snapshot;
-		timeout;
-		tailtable;
-		tailableRetryInterval;
-		numberOfRetries;
-		awaitdata;
-		exhaust;
-		batchSize;
-		returnKey;
-		maxScan;
-		min;
-		max;
-		showDiskLoc;
-		comment;
-		raw;
-		readPreferences;
-		partial;
+		limit?;
+		sort?;
+		fields?;
+		skip?;
+		hint?;
+		explain?;
+		snapshot?;
+		timeout?;
+		tailtable?;
+		tailableRetryInterval?;
+		numberOfRetries?;
+		awaitdata?;
+		exhaust?;
+		batchSize?;
+		returnKey?;
+		maxScan?;
+		min?;
+		max?;
+		showDiskLoc?;
+		comment?;
+		raw?;
+		readPreferences?;
+		partial?;
 	}
 
 	export interface MongoCollectionOptions {
