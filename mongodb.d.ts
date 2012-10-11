@@ -227,9 +227,32 @@ declare module "mongodb" {
 		hint;
 	}
 
-	export interface Cursor {
-		toArray(callback: (err: any, results: any[]) => void);
-		nextObject(callback: (err:any,doc:any) => void);
+	export class Cursor {
+		constructor (db, collection, selector, fields, skip, limit, sort, hint, explain, snapshot, timeout, tailable, batchSize, slaveOk, raw, read, returnKey, maxScan, min, max, showDiskLoc, comment, awaitdata, numberOfRetries, dbName, tailableRetryInterval, exhaust, partial);
+
+		rewind() : Cursor;
+		toArray(callback: (err: any, results: any[]) => any) : void;
+		each(callback: (err: Error, item: any) => void) : void;
+		count(callback: (err: any, count: Number) => void) : void;
+
+		sort(keyOrList : any, callback? : (err, result) => void): Cursor;
+		sort(keyOrList : String, direction : any, callback? : (err, result) => void): Cursor;
+
+		limit(limit: Number, callback?: (err, result) => void): Cursor;
+		setReadPreference(readPreferences, tags, callback?): Cursor;
+		skip(skip: Number, callback?: (err, result) => void): Cursor;
+		batchSize(batchSize, callback: (err, result) => void): Cursor;
+
+		nextObject(callback: (err:any, doc: any) => void);
+		explain(callback: (err, result) => void);
+		//stream(): CursorStream;
+
+		close(callback?: (err, result) => void);
+		isClosed(): Boolean;
+
+		static INIT;
+		static OPEN;
+		static CLOSED;
 	}
 
 	export interface CollectionFindOptions {
