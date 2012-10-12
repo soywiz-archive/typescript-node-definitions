@@ -9,7 +9,7 @@ declare module "mongodb" {
 
 		public db(dbName: string): Db;
 
-		public open(callback: (err, result) => void );
+		public open(callback: (err : Error, db : Db) => void );
 		public close(forceClose?: bool, callback?: (err: any, result: any) => void );
 		public admin(callback: (err, result) => void ): any;
 		public collectionsInfo(collectionName: string, callback?: (err, result) => void );
