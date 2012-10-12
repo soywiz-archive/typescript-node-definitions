@@ -170,7 +170,138 @@ declare module "underscore" {
 // Chaining Functions
 declare module "underscore" {
 	export interface Chain {
+		// Collection
+		each(iterator: (item: any) => void, context?: any) : Chain;
+		each(iterator: (item: any, key: any) => void, context?: any) : Chain;
+
+		forEach(iterator: (item: any) => void, context?: any) : Chain;
+		forEach(iterator: (item: any, key: any) => void, context?: any) : Chain;
+	
+		map(iterator, context?) : Chain;
+		collect(iterator, context?) : Chain;
+	
+		reduce(iterator, memo, context?) : Chain;
+		inject(iterator, memo, context?) : Chain;
+		foldl(iterator, memo, context?) : Chain;
+
+	
+		reduceRight(iterator, memo, context?) : Chain;
+		foldr(iterator, memo, context?) : Chain;
+	
+		find(iterator : (item) => bool, context?)  : Chain;
+		detect(iterator : (item) => bool, context?) : Chain;
+	
+		filter(iterator : (item) => bool, context?) : Chain;
+		select(iterator : (item) => bool, context?) : Chain;
+
+		where(properties : any) : any[];
+		reject(iterator : (item) => bool, context?) : Chain;
+	
+		all(iterator : (item) => bool, context?) : Chain;
+		every(iterator : (item) => bool, context?) : Chain;
+
+		any(iterator : (item) => bool, context?) : Chain;
+		some(iterator : (item) => bool, context?) : Chain;
+
+		contains(value: any) : Chain;
+		include(value: any) : Chain;
+
+		invoke(methodName: string, ...arguments : any[]) : Chain;
+		invoke(method: Function, ...arguments : any[]) : Chain;
+
+		pluck(propertyName : string) : Chain;
+		max(iterator : (item) => any, context?) : Chain;
+		min(iterator : (item) => any, context?) : Chain;
+	
+		sortBy(iterator : (item) => any, context?) : Chain;
+		groupBy(iterator : (item) => any) : Chain;
+		countBy(iterator : (item) => string) : Chain;
+
+		shuffle() : Chain;
+
+		toArray() : Chain;
+		size() : Chain;
+
+		// Array
+		first(n? : number) : Chain;
+		head(n? : number) : Chain;
+		take(n? : number) : Chain;
+
+		initial(n? : number) : Chain;
+
+		last(n? : number) : Chain;
+
+		rest(index? : number) : Chain;
+
+		compact() : Chain;
+
+		flatten(shallow?: bool) : Chain;
+
+		without(...values: any[]) : Chain;
+		without(values: any[]) : Chain;
+
+		union(...arrays : any[][]) : Chain;
+		intersection(...arrays : any[][]) : Chain;
+		difference(...others : any[][]) : Chain;
+		uniq(isSorted?: bool, iterator?: (item) => bool) : Chain;
+		zip(...arrays : any[][]) : Chain;
+	
+		object(values: any[]) : Chain;
+
+		indexOf(value: any, isSorted?: bool) : Chain;
+		lastIndexOf(value: any, isSorted?: bool) : Chain;
+		sortedIndex(value: any, iterator?: (item) => any) : Chain;
+	
+		range() : Chain;
+		range(stop: number, step?: number) : Chain;
+
+		// Functions
+		bind(object : any, ...arguments : any[]) : () => Chain;
+		bindAll(... methodNames : any[]) : Chain;
+		memoize(hashFunction : (value : any) => any) : Chain;
+		delay(_wait : number, ...arguments : any[]) : Chain;
+		defer(...arguments: any[]) : Chain;
+		throttle(wait : number) : Chain;
+		debounce(wait : number, immediate?) : Chain;
+		once() : Chain;
+		after(_function) : Chain;
+		wrap(wrapper : Function) : Chain;
+		compose() : Chain;
+
 		// Object
+		keys() : Chain;
+		values() : Chain;
+		pairs() : Chain;
+		invert() : Chain;
+
+		functions() : Chain;
+		methods() : Chain;
+
+		extend(...sources: any[]) : Chain;
+		pick(...keys: string[]) : Chain;
+		omit(...keys: string[]) : Chain;
+
+		defaults(...defaults: any[]) : Chain;
+		clone() : Chain;
+
+		tap(interceptor : (object: any) => void) : Chain;
+		has(key: string) : Chain;
+		isEqual(key: string) : Chain;
+		isEmpty() : Chain;
+		isElement() : Chain;
+		isArray() : Chain;
+		isObject() : Chain;
+		isArguments() : Chain;
+		isFunction() : Chain;
+		isString() : Chain;
+		isNumber() : Chain;
+		isFinite() : Chain;
+		isBoolean() : Chain;
+		isDate() : Chain;
+		isRegExp() : Chain;
+		isNaN() : Chain;
+		isNull() : Chain;
+		isUndefined() : Chain;
 
 		// Chaining
 		value(): any;
@@ -178,5 +309,5 @@ declare module "underscore" {
 
 	export function chain(obj: any): Chain;
 
-	function(obj: any) : Chain;
+	function(obj: any) : any;
 }
