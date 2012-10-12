@@ -112,6 +112,8 @@ declare module "express3" {
     }
 
     interface Response {
+    	app: Application;
+
         status(code: number): Response;
         
         set(field: Object): Response;

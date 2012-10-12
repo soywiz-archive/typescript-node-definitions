@@ -106,7 +106,7 @@ declare module "underscore" {
 declare module "underscore" {
 	export function bind(_function : Function, object : any, ...arguments : any[]) : () => any;
 	export function bindAll(object : any, ... methodNames : any[]) : void;
-	export function memoize(_function : Function, hashFunction : (value : any) => any) : any;
+	export function memoize(_function : Function, hashFunction? : (value : any) => any) : any;
 	export function delay(_function, _wait : number, ...arguments : any[]) : void;
 	export function defer(_function, ...arguments: any[]) : void;
 	export function throttle(_function, wait : number) : Function;
