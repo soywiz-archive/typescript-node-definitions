@@ -83,7 +83,8 @@ interface EventEmitter {
     removeAllListener(event: string): void;
     setMaxListeners(n: number): void;
     listeners(event: string): { Function; }[];
-    emit(event: string, arg1?: any, arg2?: any): void;
+    //emit(event: string, arg1?: any, arg2?: any): void;
+	emit(event: string, ...args: any[]): void;
 }
 
 interface WritableStream extends EventEmitter {
@@ -749,7 +750,7 @@ declare module "fs" {
     export function readlink(path: string, callback?: (err: Error, linkString: string) =>any): void;
     export function realpath(path: string, callback?: (err: Error, resolvedPath: string) =>any): void;
     export function realpath(path: string, cache: string, callback: (err: Error, resolvedPath: string) =>any): void;
-    export function realpathSync(path: string, cache?: string): void;
+    export function realpathSync(path: string, cache?: string): string;
     export function unlink(path: string, callback?: Function): void;
     export function unlinkSync(path: string): void;
     export function rmdir(path: string, callback?: Function): void;
