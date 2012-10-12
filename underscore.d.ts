@@ -119,17 +119,60 @@ declare module "underscore" {
 
 // Object Functions
 declare module "underscore" {
-	// TO DO
+	export function keys(object: any) : any[];
+	export function values(object: any) : any[];
+	export function pairs(object: any) : any[];
+	export function invert(object: any) : any;
+
+	export function functions(object: any) : string[];
+	export function methods(object: any) : string[];
+
+	export function extend(destination : any,  ...sources: any[]) : any;
+	export function pick(object : any,  ...keys: string[]) : any;
+	export function omit(object : any,  ...keys: string[]) : any;
+
+	export function defaults(object : any,  ...defaults: any[]) : any;
+	export function clone(object : any) : any;
+
+	export function tap(object : any, interceptor : (object: any) => void) : any;
+	export function has(object : any, key: string) : bool;
+	export function isEqual(object : any, key: string) : bool;
+	export function isEmpty(object : any) : bool;
+	export function isElement(object : any) : bool;
+	export function isArray(object : any) : bool;
+	export function isObject(object : any) : bool;
+	export function isArguments(object : any) : bool;
+	export function isFunction(object : any) : bool;
+	export function isString(object : any) : bool;
+	export function isNumber(object : any) : bool;
+	export function isFinite(object : any) : bool;
+	export function isBoolean(object : any) : bool;
+	export function isDate(object : any) : bool;
+	export function isRegExp(object : any) : bool;
+	export function isNaN(object : any) : bool;
+	export function isNull(object : any) : bool;
+	export function isUndefined(object : any) : bool;
 }
 
 // Utility Functions
 declare module "underscore" {
-	// TO DO
+	export function noConflict() : any;
+	export function identity(value: any): any;
+	export function times(n : number, iterator : (value : any) => void, context?);
+	export function random(min: number, max: number): number;
+	export function mixin(object: any) : void;
+	export function uniqueId(prefix?: string) : string;
+	export function escape(string: string) : string;
+	export function result(object: any, property: any) : any;
+	export function template(templateString: string, data?: any, settings?: any) : string;
 }
 
 // Chaining Functions
 declare module "underscore" {
 	export interface Chain {
+		// Object
+
+		// Chaining
 		value(): any;
 	}
 
