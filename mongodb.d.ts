@@ -86,10 +86,7 @@ declare module "mongodb" {
 		constructor (s: string);
 	}
 
-	interface MongoDb {
-	}
-
-	interface SocketOptions {
+	export interface SocketOptions {
 		//= set seconds before connection times out default:0
 		timeout?: number;
 		//= Disables the Nagle algorithm default:true
@@ -100,7 +97,7 @@ declare module "mongodb" {
 		encoding?: string;
 	}
 
-	interface ServerOptions {
+	export interface ServerOptions {
 		// - to reconnect automatically, default:false
 		auto_reconnect?: bool;
 		// - specify the number of connections in the pool default:1
@@ -109,12 +106,12 @@ declare module "mongodb" {
 		socketOptions?: any;
 	}
 
-	interface PKFactory {
+	export interface PKFactory {
 		counter: number;
 		createPk: () => number;
 	}
 
-	interface DBOptions {
+	export interface DBOptions {
 		//- if true, use native BSON parser
 		native_parser?: bool;
 		//- sets strict mode , if true then existing collections can’t be “recreated” etc.
@@ -137,7 +134,7 @@ declare module "mongodb" {
 		raw?: bool;
 	}
 
-	interface CollectionCreateOptions {
+	export interface CollectionCreateOptions {
 		// {true | {w:n, wtimeout:n} | {fsync:true}, default:false}, executes with a getLastError command returning the results of the command on MongoDB.
 		safe?: bool;
 		// {Boolean, default:false}, serialize functions on the document.
