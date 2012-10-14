@@ -175,6 +175,7 @@ declare module "mongodb" {
 		distinct(key: string, query: Object, callback: (err, result) => void);
 		distinct(key: string, query: Object, options: { readPreferences; }, callback: (err, result) => void);
 		
+		count(callback: (err, result) => void);
 		count(query: Object, callback: (err, result) => void);
 		count(query: Object, options: { readPreferences; }, callback: (err, result) => void);
 		
