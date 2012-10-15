@@ -59,10 +59,10 @@ declare module "express3" {
     }
 
     interface Request {
-        params: Object;
-        query: Object;
-        body: Object;
-        files: Object /*<RequestFileBody>*/;
+        params: any;
+        query: any;
+        body: any;
+        files: any /*<RequestFileBody>*/;
 
         param(name: String): any;
         route: RequestRoute;
@@ -108,7 +108,16 @@ declare module "express3" {
     }
 
     interface RequestFileBody {
-        size: number;
+        size?: number;
+        path?: string;
+        name?: string;
+        type?: string;
+        hash?: bool;
+        lastModifiedDate?: Date;
+        _writeStream?: any;
+        length?: number;
+        filename?: string;
+        mime?: string;
     }
 
     interface Response {
