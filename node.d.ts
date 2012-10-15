@@ -236,6 +236,7 @@ declare module "http" {
 
     export interface Server extends events.NodeEventEmitter {
         listen(port: number, hostname?: string, backlog?: number, callback?: Function): void;
+		listen(port: number, hostname?: number, callback?: Function): void;
         listen(path: string, callback?: Function): void;
         listen(handle: any, listeningListener?: Function): void;
         close(cb?: any): void;
