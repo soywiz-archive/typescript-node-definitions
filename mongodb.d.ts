@@ -34,7 +34,7 @@ declare module "mongodb" {
 		public removeUser(username: string, callback?: (err, result) => void );
 		public removeUser(username: string, options: any, callback?: (err, result) => void );
 
-		public createCollection(collectionName: string, callback?: (err, result) => void );
+		public createCollection(collectionName: string, callback?: (err: Error, result: Collection) => void );
 		public createCollection(collectionName: string, options: CollectionCreateOptions, callback?: (err, result) => void );
 
 		public command(selector: any, callback?: (err, result) => void );
@@ -202,8 +202,8 @@ declare module "mongodb" {
 		findOne(selector: any, fields: any, skip: number, limit: number, callback?: (err: any, result: Cursor) => void): Cursor;
 		findOne(selector: any, fields: any, skip: number, limit: number, timeout: number, callback?: (err: any, result: Cursor) => void): Cursor;
 		
-		createIndex(fieldOrSpec, options, callback);
-		ensureIndex(fieldOrSpec, options, callback);
+		createIndex(fieldOrSpec, options: IndexOptions, callback: (err: Error, indexName: string) => void);
+		ensureIndex(fieldOrSpec, options: IndexOptions, callback: (err: Error, indexName: string) => void);
 		indexInformation(options, callback);
 		dropIndex(name, callback);
 		dropAllIndexes(callback);
@@ -222,6 +222,14 @@ declare module "mongodb" {
 		stats(options, callback);
 		
 		hint;
+	}
+
+	export interface IndexOptions {
+		background?: bool;
+		dropDups?: bool;
+		sparse?: bool;
+		unique?: bool;
+		v?: number;
 	}
 
 	export class Cursor {
