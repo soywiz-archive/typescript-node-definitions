@@ -11,6 +11,7 @@ var app:express3.Application = express();
 */
 
 declare module "express3" {
+	import stream = module("stream");
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -120,10 +121,14 @@ declare module "express3" {
         mime?: string;
     }
 
-    interface Response {
+    interface Response extends stream.WritableStream {
     	app: Application;
 
+    	statusCode: number;
+
         status(code: number): Response;
+
+        setHeader(key: string, value: any) : Response;
         
         set(field: Object): Response;
         set(field: String, value: String): Response;
