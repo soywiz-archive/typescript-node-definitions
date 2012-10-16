@@ -32,7 +32,7 @@ httpServer.listen(app.get('port'), function () {
 
 */
 
-module "socket.io" {
+declare module "socket.io" {
 	export var version : string;
 	export var protocol: number;
 	export var clientVersion : string;
