@@ -170,7 +170,7 @@ declare module "mongodb" {
 		save(doc: any, options: { safe: any; }, callback : (err, result) => void);
 		
 		update(selector: any, document: any, callback?: (err: any, result: any) => void): void;
-		update(selector: any, document: any, options: { safe; upsert; multi; serializeFunctions; }, callback: (err: any, result: any) => void): void;
+		update(selector: any, document: any, options: { safe?; upsert?; multi?; serializeFunctions?; }, callback: (err: any, result: any) => void): void;
 		
 		distinct(key: string, query: Object, callback: (err, result) => void);
 		distinct(key: string, query: Object, options: { readPreferences; }, callback: (err, result) => void);
