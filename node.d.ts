@@ -1008,7 +1008,7 @@ declare module "util" {
     export function puts(...param: any[]): void;
     export function print(...param: any[]): void;
     export function log(string: string): void;
-    export function inspect(object: any, showHidden?: bool, depth?: number, color?: bool): void;
+    export function inspect(object: any, showHidden?: bool, depth?: number, color?: bool): string;
     export function isArray(object: any): bool;
     export function isRegExp(object: any): bool;
     export function isDate(object: any): bool;
