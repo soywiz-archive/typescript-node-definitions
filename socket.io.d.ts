@@ -119,8 +119,8 @@ declare module "socket.io" {
 		transport;
 		log: bool;
 		json: bool;
-		volatile: bool;
-		broadcast : bool;
+		volatile: Socket;
+		broadcast : Socket;
 		in(room) : SocketNamespace;
 		to(room) : SocketNamespace;
 		//setFlags();
