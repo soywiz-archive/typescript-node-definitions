@@ -13,6 +13,7 @@ declare module "supertest" {
 		assert(res: any, cb?: (err: Error, res: superagent.Response) => void);
 	}
 
+	//export function agent(app: any): TestRequest;
 	export function(app: any) : TestRequest;
 	export function(url?: string, cb?: (res: superagent.Response) => void) : TestRequest;
 }

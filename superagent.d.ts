@@ -5,7 +5,8 @@ declare module "superagent" {
 
 	export interface Response {
 		text: string;
-		header: any;
+		//header: any;
+		headers: any;
 		type: string;
 		statusCode: number;
 		req: any;
@@ -28,5 +29,6 @@ declare module "superagent" {
 		end(callback: (err: Error, res: Response) => void): Request;
 	}
 
+	export function agent(url?: string, cb?: (err: Error, res: Response) => void): Request;
 	export function(url?: string, cb?: (err: Error, res: Response) => void): Request;
 }
