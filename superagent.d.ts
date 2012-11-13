@@ -5,10 +5,15 @@ declare module "superagent" {
 
 	export interface Response {
 		text: string;
-		//header: any;
+		header: any;
 		headers: any;
 		type: string;
+		status: number;
 		statusCode: number;
+		statusType: number;
+		info: any;
+		ok: bool;
+		redirect: bool;
 		req: any;
 		res: any;
 	}
