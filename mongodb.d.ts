@@ -239,14 +239,14 @@ declare module "mongodb" {
 		rewind() : Cursor;
 		toArray(callback: (err: any, results: any[]) => any) : void;
 		each(callback: (err: Error, item: any) => void) : void;
-		count(callback: (err: any, count: Number) => void) : void;
+		count(callback: (err: any, count: number) => void) : void;
 
 		sort(keyOrList : any, callback? : (err, result) => void): Cursor;
 		sort(keyOrList : String, direction : any, callback? : (err, result) => void): Cursor;
 
-		limit(limit: Number, callback?: (err, result) => void): Cursor;
+		limit(limit: number, callback?: (err, result) => void): Cursor;
 		setReadPreference(readPreferences, tags, callback?): Cursor;
-		skip(skip: Number, callback?: (err, result) => void): Cursor;
+		skip(skip: number, callback?: (err, result) => void): Cursor;
 		batchSize(batchSize, callback: (err, result) => void): Cursor;
 
 		nextObject(callback: (err:any, doc: any) => void);
