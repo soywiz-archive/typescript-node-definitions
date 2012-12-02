@@ -44,6 +44,10 @@ declare module "express3" {
         post(path:String, callback:(req: Request, res: Response) => void);
         all(path:String, callback:(req: Request, res: Response) => void);
 
+        get(path:RegExp, callback:(req: Request, res: Response) => void);
+        post(path:RegExp, callback:(req: Request, res: Response) => void);
+        all(path:RegExp, callback:(req: Request, res: Response) => void);
+
         locals: any;
 
         render(view: String, options: any, callback: (err, html) => void);
