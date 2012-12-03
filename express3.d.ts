@@ -173,6 +173,8 @@ declare module "express3" {
 
         render(view: String, callback: (err, html: String) => void);
         render(view: String, locals: Object, callback?: (err, html: String) => void);
+
+        writeHead(code: number, options: any): void;
     }
 
     interface ResponseSendfileOptions {
