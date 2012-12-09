@@ -763,8 +763,7 @@ declare module "fs" {
     export function unlinkSync(path: string): void;
     export function rmdir(path: string, callback?: Function): void;
     export function rmdirSync(path: string): void;
-    export function mkdir(path: string, mode?: number, callback?: Function): void;
-    export function mkdir(path: string, mode?: string, callback?: Function): void;
+    export function mkdir(path: string, mode?: any, callback?: Function): void;
     export function mkdirSync(path: string, mode?: number): void;
     export function mkdirSync(path: string, mode?: string): void;
     export function readdir(path: string, callback?: (err: Error, files: string[]) => void): void;
