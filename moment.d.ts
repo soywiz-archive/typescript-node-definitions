@@ -28,8 +28,8 @@ declare module "moment" {
 		add(type: string, count: number): Moment;
 		add(info: any): Moment;
 
-		substract(type: string, count: number): Moment;
-		substract(info: any): Moment;
+		subtract(type: string, count: number): Moment;
+		subtract(info: any): Moment;
 
 		year(value: number): Moment;
 		month(value: number): Moment;
@@ -67,7 +67,7 @@ declare module "moment" {
 		daysInMonth(): number;
 		isDST(): bool;
 
-		format(format?: string): number;
+		format(format?: string): string;
 
 		//duration(): Duration;
 		calendar(): string;
