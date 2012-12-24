@@ -9,21 +9,33 @@ declare module "request" {
 	export import http = module('http');
 	export import FormData = module('form-data');
     
+	export function(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
 	export function(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
 	export function(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
-	export function(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+
 	export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export var initParams;
 	export function defaults(options, requester);
 	export function forever(agentOptions, optionsArg);
-	export function get(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
-	export function post(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
-	export function put(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
-	export function head(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
-	export function del(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
 	export function jar(): CookieJar;
 	export function cookie(str: string): Cookie;
-	
+    
+	export function get(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function get(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function get(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+    
+	export function put(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function put(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function put(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+    
+	export function head(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function head(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function head(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+    
+	export function del(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function del(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function del(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+
 	interface Options {
 		uri?: string;
 		callback?: (error: any, response: any, body: any) => void;
