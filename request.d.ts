@@ -8,38 +8,39 @@ declare module "request" {
 	export import stream = module('stream');
 	export import http = module('http');
 	export import FormData = module('form-data');
-
-	export function(uri: string, callback: () => void): Request;
-	export function(uri: string, options: Options, callback: () => void): Request;
-	export function request(uri: string, options: Options, callback: () => void): Request;
+    
+	export function(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export var initParams;
 	export function defaults(options, requester);
 	export function forever(agentOptions, optionsArg);
-	export function get(uri: string, options: Options, callback: () => void): Request;
-	export function post(uri: string, options: Options, callback: () => void): Request;
-	export function put(uri: string, options: Options, callback: () => void): Request;
-	export function head(uri: string, options: Options, callback: () => void): Request;
-	export function del(uri: string, options: Options, callback: () => void): Request;
+	export function get(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function post(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function put(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function head(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function del(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
 	export function jar(): CookieJar;
 	export function cookie(str: string): Cookie;
 	
 	interface Options {
-		uri: string;
-		callback: () => void;
-		jar;
-		form;
-		oauth;
-		aws;
-		qs;
-		json;
-		multipart;
-		ca;
-		agentOptions;
-		agentClass;
-		forever;
-		requestBodyStream;
-		host;
-		port;
+		uri?: string;
+		callback?: (error: any, response: any, body: any) => void;
+		jar?;
+		form?;
+		oauth?;
+		aws?;
+		qs?;
+		json?;
+		multipart?;
+		ca?;
+		agentOptions?;
+		agentClass?;
+		forever?;
+		requestBodyStream?;
+		host?;
+		port?;
 	}
 
 	interface Request {
