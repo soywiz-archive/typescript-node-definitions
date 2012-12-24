@@ -9,7 +9,7 @@ declare module "request" {
 	export import http = module('http');
 	export import FormData = module('form-data');
     
-	export function(uri: string, options: Options, callback: (error: any, response: any, body: any) => void): Request;
+	export function(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export function(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
 	export function(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 
