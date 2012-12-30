@@ -1,10 +1,10 @@
 declare module "nock" {
 	export import nock = module('nock');
 
-    export function(host: string, options?: Options): Scope;
-    export var recorder: Recorder;
+    function(host: string, options?: Options): Scope;
+    var recorder: Recorder;
 
-    declare class Scope {
+    class Scope {
         get(path: string, data?: string): Scope;
         post(path: string, data?: string): Scope;
         put(path: string, data?: string): Scope;
@@ -33,7 +33,7 @@ declare module "nock" {
         restore(): void;
     }
     
-    declare class Recorder {
+    class Recorder {
         rec(capture?: bool): void;
         play(): string[];
     }
