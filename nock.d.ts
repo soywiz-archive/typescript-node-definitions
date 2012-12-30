@@ -1,4 +1,4 @@
-declare module "nock" {
+module "nock" {
 	export import nock = module('nock');
 
     function(host: string, options?: Options): Scope;
