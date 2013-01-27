@@ -1,6 +1,10 @@
 ///<reference path='node.d.ts' />
 
 declare module "mongodb" {
+
+    export function connect(uri: string, options: any, callback: (err: any, db: Db) => void);
+    export function connect(uri: string, callback: (err: any, db: Db) => void);
+
 	export class Server {
 		constructor (host: string, port: number, opts?: ServerOptions);
 	}
@@ -80,6 +84,8 @@ declare module "mongodb" {
 		public DEFAULT_URL: string;
 
 		public connect(url: string, options: { uri_decode_auth?: bool; }, callback: (err, result) => void );
+        
+		public addListener(event: string, handler:(param: any) => any);
 	}
 
 	export class ObjectID {
@@ -182,7 +188,7 @@ declare module "mongodb" {
 		drop(callback?: (err, result) => void);
 		
 		findAndModify(query: Object, sort: any[], doc: Object, callback: (err, result) => void);
-		findAndModify(query: Object, sort: any[], doc: Object, options: { safe: any; remove: bool; upsert: bool; new: bool; }, callback: (err, result) => void);
+		findAndModify(query: Object, sort: any[], doc: Object, options: { safe?: any; remove?: bool; upsert?: bool; new?: bool; }, callback: (err, result) => void);
 		
 		findAndRemove(query : Object, sort? : any[], callback?: (err, result) => void);
 		findAndRemove(query : Object, sort? : any[], options?: { safe; }, callback?: (err, result) => void);

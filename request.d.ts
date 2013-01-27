@@ -57,6 +57,17 @@ declare module "request" {
 		requestBodyStream?;
 		host?;
 		port?;
+		method?;
+		headers?;
+		body?;
+		followRedirect?;
+		followAllRedirects?;
+		maxRedirects?;
+		encoding?;
+		pool?;
+        timeout?;
+        proxy?;
+        strictSSL?;
 	}
 
 	interface Request {

@@ -2,7 +2,6 @@ module "nock" {
 	export import nock = module('nock');
 
     function(host: string, options?: Options): Scope;
-    function cleanAll(): void;
     var recorder: Recorder;
 
     class Scope {
@@ -30,6 +29,7 @@ module "nock" {
 
         done(): void;
         isDone(): bool;
+        cleanAll(): void;
         restore(): void;
     }
     

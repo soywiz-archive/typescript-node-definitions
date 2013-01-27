@@ -39,7 +39,7 @@ module "cheerio" {
 
         // Attributes
         attr(attributeName: string, value: any): CheerioSelector;
-        attr(map: { [key: any]: any; }): string;
+        attr(map: { [key: any]: any; }): CheerioSelector;
         attr(attributeName: string, func: (index: any, attr: any) => any): CheerioSelector;
 
         removeAttr(attributeName: any): CheerioSelector;
