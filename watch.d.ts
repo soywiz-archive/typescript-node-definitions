@@ -3,7 +3,7 @@
 // https://github.com/mikeal/watch
 
 declare module "watch" {
-	export import fs = module("fs");
+	import fs = module("fs");
 
 	interface Monitor extends EventEmitter {
 		// event: created

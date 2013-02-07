@@ -1,7 +1,7 @@
 /// <reference path="node.d.ts" />
 
 declare module "imagemagick" {
-	export import child_process = module("child_process");
+	import child_process = module("child_process");
 
 	interface _identify {
 		(path: string, callback: (err: Error, features: Features) => void): child_process.ChildProcess;

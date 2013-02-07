@@ -11,8 +11,8 @@ var app:express3.Application = express();
 */
 
 declare module "express3" {
-	export import stream = module("stream");
-	export import express3 = module("express3");
+	import stream = module("stream");
+	import express3 = module("express3");
     //declare function callHack(): app;
 
     //export var app: Application;
