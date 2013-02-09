@@ -18,7 +18,7 @@ declare module "express3" {
 }
 
 declare module "express-useragent" {
-	export import express3 = module('express3');
+	import express3 = module('express3');
 
 	export function express(): (req: express3.Request, res: express3.Response, next?: Function) => void;
 }

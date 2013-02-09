@@ -2,8 +2,8 @@
 ///<reference path='superagent.d.ts' />
 
 declare module "supertest" {
-	export import supertest = module('supertest');
-	export import superagent = module('superagent');
+	import supertest = module('supertest');
+	import superagent = module('superagent');
 
 	export class TestRequest extends superagent.Request {
 		serverAddress(app: any, path: string): TestRequest;
