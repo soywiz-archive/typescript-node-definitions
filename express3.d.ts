@@ -40,13 +40,13 @@ declare module "express3" {
         param(callback: (req: Request, res: Response, next, id) => void);
         param(name: String, callback: (req: Request, res: Response, next, id) => void);
 
-        get(path:String, callback:(req: Request, res: Response) => void);
-        post(path:String, callback:(req: Request, res: Response) => void);
-        all(path:String, callback:(req: Request, res: Response) => void);
+        get(path:String, ...callbacks: { (...args: any[]): void; }[] );
+        post(path:String, ...callbacks: { (...args: any[]): void; }[] );
+        all(path:String, ...callbacks: { (...args: any[]): void; }[] );
 
-        get(path:RegExp, callback:(req: Request, res: Response) => void);
-        post(path:RegExp, callback:(req: Request, res: Response) => void);
-        all(path:RegExp, callback:(req: Request, res: Response) => void);
+        get(path:RegExp, ...callbacks: { (...args: any[]): void; }[] );
+        post(path:RegExp, ...callbacks: { (...args: any[]): void; }[] );
+        all(path:RegExp, ...callbacks: { (...args: any[]): void; }[] );
 
         locals: any;
 
