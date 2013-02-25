@@ -935,11 +935,11 @@ declare module "crypto" {
     export function createHash(algorithm: string): Hash;
     export function createHmac(algorithm: string, key: string): Hmac;
     interface Hash {
-        update(data: any, input_encoding?: string): void;
+        update(data: any, input_encoding?: string): Hash;
         digest(encoding?: string): string;
     }
     interface Hmac {
-        update(data: any): void;
+        update(data: any): Hmac;
         digest(encoding?: string): void;
     }
     export function createCipher(algorithm: string, password: any): Cipher;
