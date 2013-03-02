@@ -245,7 +245,7 @@ declare module "http" {
     export interface ServerRequest extends events.NodeEventEmitter, stream.ReadableStream {
         method: string;
         url: string;
-        headers: string;
+        headers: any;
         trailers: string;
         httpVersion: string;
         setEncoding(encoding?: string): void;
@@ -948,9 +948,9 @@ declare module "crypto" {
         update(data: any, input_encoding?: string, output_encoding?: string): string;
         final(output_encoding?: string): string;
         setAutoPadding(auto_padding: bool): void;
-        createDecipher(algorithm: string, password: any): Decipher;
-        createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     }
+    export function createDecipher(algorithm: string, password: any): Decipher;
+    export function createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     interface Decipher {
         update(data: any, input_encoding?: string, output_encoding?: string): void;
         final(output_encoding?: string): string;
