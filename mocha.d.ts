@@ -1,29 +1,31 @@
 // BDD
-declare var describe : IMochaDescribe;
+declare var describe : IMochaDescribeWithSkip;
 
-declare var it: IMochaTest;
+declare var it: IMochaTestWithSkip;
 
-declare var before : IMochaSyncAsync;
+declare var before : IMochaTest;
 
-declare var after : IMochaSyncAsync;
+declare var after : IMochaTest;
 
-declare var beforeEach : IMochaSyncAsync;
+declare var beforeEach : IMochaTest;
 
-declare var afterEach : IMochaSyncAsync;
+declare var afterEach : IMochaTest;
 
 declare interface IMochaDescribe {
     (title: string, cb?: () => void) : void;
+}
+
+declare interface IMochaDescribeWithSkip extends IMochaDescribe {
     skip : IMochaDescribe;
     only : IMochaDescribe;
 }
-declare interface IMochaSyncAsync {
-    (cb: () => void) : void;
-    (cb: (done:(err? : Error) => void) => void) : void;
-    (title: string, cb?: () => void) : void;
-    (title: string, cb: (done:(err? : Error) => void) => void) : void;
+
+declare interface IMochaTest {
+    (title?: string, cb?: () => void) : void;
+    (title?: string, cb?: (done:(err? : Error) => void) => void) : void;
 }
 
-declare interface IMochaTest extends IMochaSyncAsync {
+declare interface IMochaTestWithSkip extends IMochaTest {
     skip : IMochaTest;
     only : IMochaTest;
 }
