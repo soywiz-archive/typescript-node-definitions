@@ -1,27 +1,33 @@
 // BDD
-declare function describe(title?: string, cb?: () => void);
+declare var describe : IMochaDescribe;
 
-declare function it(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare var it: IMochaTest;
 
-declare function before(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare var before : IMochaSyncAsync;
 
-declare function after(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare var after : IMochaSyncAsync;
 
-declare function beforeEach(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare var beforeEach : IMochaSyncAsync;
 
-declare function afterEach(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare var afterEach : IMochaSyncAsync;
 
-declare var it : it;
-declare interface it{
-    skip(title?: string, cb?: (done?:(err? : Error) => void) => void);
-    only(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare interface IMochaDescribe {
+    (title: string, cb?: () => void) : void;
+    skip : IMochaDescribe;
+    only : IMochaDescribe;
+}
+declare interface IMochaSyncAsync {
+    (cb: () => void) : void;
+    (cb: (done:(err? : Error) => void) => void) : void;
+    (title: string, cb?: () => void) : void;
+    (title: string, cb: (done:(err? : Error) => void) => void) : void;
 }
 
-declare var describe : describe;
-declare interface describe{
-    skip(title?: string, cb?: (done?:(err? : Error) => void) => void);
-    only(title?: string, cb?: (done?:(err? : Error) => void) => void);
+declare interface IMochaTest extends IMochaSyncAsync {
+    skip : IMochaTest;
+    only : IMochaTest;
 }
+
 
 
 // TDD
