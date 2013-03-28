@@ -1,33 +1,35 @@
 // BDD
-declare function describe(cb: () => void);
-declare function describe(cb: (done:() => void) => void);
-declare function describe(title: string, cb: () => void);
-declare function describe(title: string, cb: (done:() => void) => void);
+declare var describe : IMochaDescribeWithSkip;
 
-declare function it(cb: () => void);
-declare function it(cb: (done:() => void) => void);
-declare function it(title: string, cb: () => void);
-declare function it(title: string, cb: (done:() => void) => void);
+declare var it: IMochaTestWithSkip;
 
-declare function before(cb: () => void);
-declare function before(cb: (done:() => void) => void);
-declare function before(title: string, cb: () => void);
-declare function before(title: string, cb: (done:() => void) => void);
+declare var before : IMochaTest;
 
-declare function after(cb: () => void);
-declare function after(cb: (done:() => void) => void);
-declare function after(title: string, cb: () => void);
-declare function after(title: string, cb: (done:() => void) => void);
+declare var after : IMochaTest;
 
-declare function beforeEach(cb: () => void);
-declare function beforeEach(cb: (done:() => void) => void);
-declare function beforeEach(title: string, cb: () => void);
-declare function beforeEach(title: string, cb: (done:() => void) => void);
+declare var beforeEach : IMochaTest;
 
-declare function afterEach(cb: () => void);
-declare function afterEach(cb: (done:() => void) => void);
-declare function afterEach(title: string, cb: () => void);
-declare function afterEach(title: string, cb: (done:() => void) => void);
+declare var afterEach : IMochaTest;
+
+declare interface IMochaDescribe {
+    (title: string, cb?: () => void) : void;
+}
+
+declare interface IMochaDescribeWithSkip extends IMochaDescribe {
+    skip : IMochaDescribe;
+    only : IMochaDescribe;
+}
+
+declare interface IMochaTest {
+    (title?: string, cb?: () => void) : void;
+    (title?: string, cb?: (done:(err? : Error) => void) => void) : void;
+}
+
+declare interface IMochaTestWithSkip extends IMochaTest {
+    skip : IMochaTest;
+    only : IMochaTest;
+}
+
 
 
 // TDD
