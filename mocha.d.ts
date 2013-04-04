@@ -21,8 +21,10 @@ declare interface IMochaDescribeWithSkip extends IMochaDescribe {
 }
 
 declare interface IMochaTest {
-    (title?: string, cb?: () => void) : void;
-    (title?: string, cb?: (done:(err? : Error) => void) => void) : void;
+    (cb?: () => void) : void;
+    (cb?: (done:(err? : Error) => void) => void) : void;
+    (title: string, cb?: () => void) : void;
+    (title: string, cb?: (done:(err? : Error) => void) => void) : void;
 }
 
 declare interface IMochaTestWithSkip extends IMochaTest {
