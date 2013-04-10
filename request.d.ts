@@ -24,6 +24,10 @@ declare module "request" {
 	export function get(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
 	export function get(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
     
+	export function post(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
+	export function post(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
+	export function post(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+    
 	export function put(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export function put(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
 	export function put(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
@@ -53,6 +57,17 @@ declare module "request" {
 		requestBodyStream?;
 		host?;
 		port?;
+		method?;
+		headers?;
+		body?;
+		followRedirect?;
+		followAllRedirects?;
+		maxRedirects?;
+		encoding?;
+		pool?;
+        timeout?;
+        proxy?;
+        strictSSL?;
 	}
 
 	interface Request {

@@ -1,4 +1,7 @@
-declare interface any {
+declare module "should" {
+
+}
+declare interface Object {
 	should: any;
 	be: any;
 	not: any;
