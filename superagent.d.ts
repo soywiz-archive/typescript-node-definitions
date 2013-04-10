@@ -34,6 +34,35 @@ declare module "superagent" {
 		end(callback: (err: Error, res: Response) => void): Request;
 	}
 
-	export function agent(url?: string, cb?: (err: Error, res: Response) => void): Request;
+	export interface Agent {
+	}
+
+	export interface Part {
+	}
+
+	export function agent(): Agent;
+	export function get (url: string): Request;
+	export function post(url: string): Request;
+	export function put();
+	export function head();
+	export function del();
+	export function options();
+	export function trace();
+	export function copy();
+	export function lock();
+	export function mkcol();
+	export function move();
+	export function propfind();
+	export function proppatch();
+	export function unlock();
+	export function report();
+	export function mkactivity();
+	export function checkout();
+	export function merge();
+	//export function 'm-search'();
+	export function notify();
+	export function subscribe();
+	export function unsubscribe();
+	export function patch();
 	export function(url?: string, cb?: (err: Error, res: Response) => void): Request;
 }
