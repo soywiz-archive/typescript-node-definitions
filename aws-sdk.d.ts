@@ -4,10 +4,6 @@ declare module "aws-sdk" {
 
     export var config;
 
-    export interface IAwsCredentials {
-        accessKeyId: string;
-    }
-
     export function Config(json);
 
     export class Credentials {
@@ -17,30 +13,17 @@ declare module "aws-sdk" {
         accessKeyId: string;
     }
 
-    export interface IClientConfig {
+    export interface ClientConfig {
         credentials: Credentials;
         region: string;
     }
-    
-    export class ClientConfig {
-        public credentials: Credentials;
-        public region: string;
-    }
 
-    export interface ISQS {
-        client: Sqs.Client;
-    }
-        
-    export class SQS implements ISQS {
+    export class SQS {
         constructor(options?: any);
         public client: Sqs.Client;
     };
-
-    export interface ISES {
-        client: Ses.Client;
-    }
     
-    export class SES implements ISES {
+    export class SES {
         constructor(options?: any);
         public client: Ses.Client;
     };
@@ -48,7 +31,7 @@ declare module "aws-sdk" {
     declare module Sqs {
 
         export interface Client {
-            config: IClientConfig;
+            config: ClientConfig;
 
             sendMessage(params: any, callback: (err: any, data: SendMessageResult) => void );
             sendMessageBatch(params: any, callback: (err: any, data: SendMessageBatchResult) => void );
@@ -148,10 +131,11 @@ declare module "aws-sdk" {
 
 
     }
+
     declare module Ses {
 
         export interface Client {
-            config: IClientConfig;
+            config: ClientConfig;
 
             sendEmail(params: any, callback: (err: any, data: SendEmailResult) => void );
         }
@@ -191,7 +175,3 @@ declare module "aws-sdk" {
 
     }
 }
-
-
-
-
