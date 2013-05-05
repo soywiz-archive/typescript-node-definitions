@@ -1,4 +1,4 @@
-/// <reference path="C:\Libraries\TypeScript\node.d.ts" />
+/// <reference path="node.d.ts" />
 
 declare module "aws-sdk" {
 
