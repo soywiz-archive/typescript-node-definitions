@@ -42,10 +42,12 @@ declare module "express3" {
 
         get(path:String, ...callbacks: Function[] );
         post(path:String, ...callbacks: Function[] );
+		options(path:String, ...callbacks: Function[]);
         all(path:String, ...callbacks: Function[] );
 
         get(path:RegExp, ...callbacks: Function[] );
         post(path:RegExp, ...callbacks: Function[] );
+		options(path:RegExp, ...callbacks: Function[]);
         all(path:RegExp, ...callbacks: Function[] );
 
         locals: any;
