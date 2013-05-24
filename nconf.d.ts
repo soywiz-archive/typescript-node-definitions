@@ -30,11 +30,10 @@
     export function path(key: any): any[];
     export function loadFiles(files: any, callback?: ICallbackFunction);
     export function loadFilesSync(files: any, callback?: ICallbackFunction);
-    
-    export enum formats
-    {
-       json,
-       ini
+
+    export enum formats {
+        json,
+        ini
     }
 
     export interface IOptions {
@@ -45,6 +44,7 @@
         file?: string;
         dir?: string;
         search?: bool;
+        json_spacing?: number;
     }
 
 
@@ -82,8 +82,11 @@
 
 
     export interface IStore {
+        type: string;
         get (key: string): any;
         set (key: string, value: any): bool;
-    }
-
+        clear(key: string): bool;
+        merge(key: string, value: any): bool;
+        reset(callback?: ICallbackFunction): bool
+        };
 }
