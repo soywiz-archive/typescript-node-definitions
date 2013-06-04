@@ -68,7 +68,6 @@ declare module "aws-sdk" {
 		export interface DeleteMessageRequest {
 			QueueUrl? :string;
 			ReceiptHandle? :string;
-			Attributes? :Attribute[];
 		}
 
 		export class Attribute {
@@ -96,7 +95,6 @@ declare module "aws-sdk" {
 
 		export interface DeleteQueueRequest {
 			QueueUrl? :string;
-			Attributes? :Attribute[];
 		}
 
 		export class SendMessageResult {
@@ -105,7 +103,7 @@ declare module "aws-sdk" {
 		}
 
 		export class ReceiveMessageResult {
-			Message :Message[];
+			Messages :Message[];
 		}
 
 		export class Message {
@@ -117,8 +115,8 @@ declare module "aws-sdk" {
 		}
 
 		export class DeleteMessageBatchResult {
-			DeleteMessageBatchResultEntry :DeleteMessageBatchResultEntry[];
-			BatchResultErrorEntry :BatchResultErrorEntry[];
+			Successful :DeleteMessageBatchResultEntry[];
+			Failed  :BatchResultErrorEntry[];
 		}
 
 		export class DeleteMessageBatchResultEntry {
@@ -133,8 +131,8 @@ declare module "aws-sdk" {
 		}
 
 		export class SendMessageBatchResult {
-			SendMessageBatchResultEntry :SendMessageBatchResultEntry[];
-			BatchResultErrorEntry :BatchResultErrorEntry[];
+			Successful :SendMessageBatchResultEntry[];
+			Failed :BatchResultErrorEntry[];
 		}
 
 		export class SendMessageBatchResultEntry {
