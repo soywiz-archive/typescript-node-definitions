@@ -39,7 +39,7 @@ declare module "aws-sdk" {
             deleteMessage(params: DeleteMessageRequest, callback: (err: any, data: any) => void );
             deleteMessageBatch(params: DeleteMessageBatchRequest, callback: (err: any, data: DeleteMessageBatchResult) => void );
 			createQueue(params: CreateQueueRequest, callback: (err: any, data: CreateQueueResult) => void );
-			deleteQueue(params: DeleteQueueRequest, callback: (err: any, data: DeleteQueueResult) => void );
+			deleteQueue(params: DeleteQueueRequest, callback: (err: any, data: any) => void );
         }
 
         export interface SendMessageRequest {
