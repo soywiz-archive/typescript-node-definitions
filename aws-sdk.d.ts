@@ -33,101 +33,120 @@ declare module "aws-sdk" {
         export interface Client {
             config: ClientConfig;
 
-            sendMessage(params: any, callback: (err: any, data: SendMessageResult) => void );
-            sendMessageBatch(params: any, callback: (err: any, data: SendMessageBatchResult) => void );
-            receiveMessage(params: any, callback: (err: any, data: ReceiveMessageResult) => void );
-            deleteMessage(params: any, callback: (err: any, data: any) => void );
-            deleteMessageBatch(params: any, callback: (err: any, data: DeleteMessageBatchResult) => void );
+            sendMessage(params: SendMessageRequest, callback: (err: any, data: SendMessageResult) => void );
+            sendMessageBatch(params: SendMessageBatchRequest, callback: (err: any, data: SendMessageBatchResult) => void );
+            receiveMessage(params: ReceiveMessageRequest, callback: (err: any, data: ReceiveMessageResult) => void );
+            deleteMessage(params: DeleteMessageRequest, callback: (err: any, data: any) => void );
+            deleteMessageBatch(params: DeleteMessageBatchRequest, callback: (err: any, data: DeleteMessageBatchResult) => void );
+			createQueue(params: CreateQueueRequest, callback: (err: any, data: CreateQueueResult) => void );
+			deleteQueue(params: DeleteQueueRequest, callback: (err: any, data: DeleteQueueResult) => void );
         }
 
         export interface SendMessageRequest {
-            QueueUrl: string;
-            MessageBody: string;
-            DelaySeconds: number;
-        }
+			QueueUrl? :string;
+			MessageBody? :string;
+			DelaySeconds? :number;
+		}
 
-        export interface ReceiveMessageRequest {
-            QueueUrl: string;
-            MaxNumberOfMessages: number;
-            VisibilityTimeout: number;
-            AttributeName: string[];
-        }
+		export interface ReceiveMessageRequest {
+			QueueUrl? :string;
+			MaxNumberOfMessages? :number;
+			VisibilityTimeout? :number;
+			AttributeNames? :string[];
+		}
 
-        export interface DeleteMessageBatchRequest {
-            QueueUrl: string;
-            Entries: DeleteMessageBatchRequestEntry[];
-        }
+		export interface DeleteMessageBatchRequest {
+			QueueUrl? :string;
+			Entries? :DeleteMessageBatchRequestEntry[];
+		}
 
-        export class DeleteMessageBatchRequestEntry {
-            Id: string;
-            ReceiptHandle: string;
-        }
+		export class DeleteMessageBatchRequestEntry {
+			Id :string;
+			ReceiptHandle :string;
+		}
 
-        export interface DeleteMessageRequest {
-            QueueUrl: string;
-            ReceiptHandle: string;
-            Attribute: Attribute[];
-        }
+		export interface DeleteMessageRequest {
+			QueueUrl? :string;
+			ReceiptHandle? :string;
+			Attributes? :Attribute[];
+		}
 
-        export class Attribute {
-            Name: string;
-            Value: string;
-        }
+		export class Attribute {
+			Name :string;
+			Value :string;
+		}
 
-        export interface SendMessageBatchRequest {
-            QueueUrl: string;
-            Entries: SendMessageBatchRequestEntry[];
-        }
+		export interface SendMessageBatchRequest {
+			QueueUrl? :string;
+			Entries? :SendMessageBatchRequestEntry[];
+		}
 
-        export class SendMessageBatchRequestEntry {
-            Id: string;
-            MessageBody: string;
-            DelaySeconds: number;
-        }
+		export class SendMessageBatchRequestEntry {
+			Id :string;
+			MessageBody :string;
+			DelaySeconds :number;
+		}
 
-        export class SendMessageResult {
-            MessageId: string;
-            MD5OfMessageBody: string;
-        }
+		export interface CreateQueueRequest {
+			QueueName? :string;
+			DefaultVisibilityTimeout? :number;
+			DelaySeconds? :number;
+			Attributes? :Attribute[];
+		}
 
-        export class ReceiveMessageResult {
-            Messages: Message[];
-        }
+		export interface DeleteQueueRequest {
+			QueueUrl? :string;
+			Attributes? :Attribute[];
+		}
 
-        export class Message {
-            MessageId: string;
-            ReceiptHandle: string;
-            MD5OfBody: string;
-            Body: string;
-            Attribute: Attribute[];
-        }
+		export class SendMessageResult {
+			MessageId :string;
+			MD5OfMessageBody :string;
+		}
 
-        export class DeleteMessageBatchResult {
-            DeleteMessageBatchResultEntry: DeleteMessageBatchResultEntry[];
-            BatchResultErrorEntry: BatchResultErrorEntry[];
-        }
+		export class ReceiveMessageResult {
+			Message :Message[];
+		}
 
-        export class DeleteMessageBatchResultEntry {
-            Id: string;
-        }
+		export class Message {
+			MessageId :string;
+			ReceiptHandle :string;
+			MD5OfBody :string;
+			Body :string;
+			Attributes :Attribute[];
+		}
 
-        export class BatchResultErrorEntry {
-            Id: string;
-            Code: string;
-            Message: string;
-            SenderFault: string;
-        }
+		export class DeleteMessageBatchResult {
+			DeleteMessageBatchResultEntry :DeleteMessageBatchResultEntry[];
+			BatchResultErrorEntry :BatchResultErrorEntry[];
+		}
 
-        export class SendMessageBatchResult {
-            SendMessageBatchResultEntry: SendMessageBatchResultEntry[];
-            BatchResultErrorEntry: BatchResultErrorEntry[];
-        }
+		export class DeleteMessageBatchResultEntry {
+			Id :string;
+		}
 
-        export class SendMessageBatchResultEntry {
-            Id: string;
-            MessageId: string;
-            MD5OfMessageBody: string;
-        }
+		export class BatchResultErrorEntry {
+			Id :string;
+			Code :string;
+			Message :string;
+			SenderFault :string;
+		}
+
+		export class SendMessageBatchResult {
+			SendMessageBatchResultEntry :SendMessageBatchResultEntry[];
+			BatchResultErrorEntry :BatchResultErrorEntry[];
+		}
+
+		export class SendMessageBatchResultEntry {
+			Id :string;
+			MessageId :string;
+			MD5OfMessageBody :string;
+		}
+
+		export class CreateQueueResult {
+			QueueUrl :string;
+		}
+
 
 
     }
