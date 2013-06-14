@@ -13,6 +13,7 @@ var app:express3.Application = express();
 declare module "express3" {
 	import stream = module("stream");
 	import express3 = module("express3");
+    import http = module("http")
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -68,7 +69,7 @@ declare module "express3" {
         //favicon(): (req: Request, res: Response, next?: Function) => void;
     }
 
-    interface Request {
+    interface Request extends http.ServerRequest {
         params: any;
         query: any;
         body: any;
