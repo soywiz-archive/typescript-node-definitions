@@ -18,8 +18,8 @@
     export function argv(options?: IOptions): Provider;
     export function env(options?: IOptions): Provider;
     export function file(name: string, options?: IFileOptions): Provider;
-    export function file(options: IOptions): Provider;
-
+    export function file(options: IFileOptions): Provider;
+    export function use(name: string, options?: IOptions): Provider;
     export function defaults(options?: IOptions): Provider;
     export function init(options?: IOptions): void;
     export function overrides(options?: IOptions): Provider;
@@ -70,8 +70,9 @@
         add(name: string, options?: IOptions): Provider;
         argv(options?: IOptions): Provider;
         env(options?: IOptions): Provider;
-        file(name: string, options?: IOptions): Provider;
-        file(options: IOptions): Provider;
+        file(name: string, options?: IFileOptions): Provider;
+        file(options: IFileOptions): Provider;
+        use(name: string, options?: IOptions): Provider;
 
         defaults(options?: IOptions): Provider;
         init(options?: IOptions): void;
@@ -87,6 +88,7 @@
         set (key: string, value: any): bool;
         clear(key: string): bool;
         merge(key: string, value: any): bool;
-        reset(callback?: ICallbackFunction): bool
-        };
+        reset(callback?: ICallbackFunction): bool;
+    };
+
 }
