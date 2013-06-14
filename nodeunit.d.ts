@@ -1,7 +1,5 @@
-﻿declare module nodeunit
-{
-    export class Test
-    {
+﻿declare module nodeunit {
+    export class Test {
         done(err?: any): void;
         expect(num: number): void;
 
@@ -38,13 +36,12 @@
     //    }
     //    exports.testgroup = testGroup;
 
-    export interface ITestGroup
-    {
-        setUp(callback: ICallbackFunction );
-        tearDown(callback: ICallbackFunction );
+    export interface ITestGroup {
+        setUp? (callback: ICallbackFunction);
+        tearDown? (callback: ICallbackFunction);
     }
 
-    export interface ICallbackFunction { (err?: any): void; }; 
+    export interface ICallbackFunction { (err?: any): void; };
 }
 
 
