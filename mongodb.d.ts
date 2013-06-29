@@ -99,7 +99,7 @@ declare module "mongodb" {
 		noDelay?: bool;
 		//= Set if keepAlive is used default:0 , which means no keepAlive, set higher than 0 for keepAlive
 		keepAlive?: number;
-		//= ëasciií|íutf8í|íbase64í default:null
+		//= ‚Äòascii‚Äô|‚Äôutf8‚Äô|‚Äôbase64‚Äô default:null
 		encoding?: string;
 	}
 
@@ -120,7 +120,7 @@ declare module "mongodb" {
 	export interface DBOptions {
 		//- if true, use native BSON parser
 		native_parser?: bool;
-		//- sets strict mode , if true then existing collections canít be ìrecreatedî etc.
+		//- sets strict mode , if true then existing collections can‚Äôt be ‚Äúrecreated‚Äù etc.
 		strict?: bool;
 		//- custom primary key factory to generate _id values (see Custom primary keys).
 		pk?: PKFactory;
@@ -134,7 +134,7 @@ declare module "mongodb" {
 		reaper?: bool;
 		//- specify the number of milliseconds between each reaper attempt default:10000
 		reaperInterval?: number;
-		//- specify the number of milliseconds for timing out callbacks that donít return default:30000
+		//- specify the number of milliseconds for timing out callbacks that don‚Äôt return default:30000
 		reaperTimeout?: number;
 		//- driver expects Buffer raw bson document, default:false
 		raw?: bool;

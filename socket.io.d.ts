@@ -37,6 +37,9 @@ declare module "socket.io" {
 	export var protocol: number;
 	export var clientVersion : string;
 	export function listen(server : any, options? : ManagerOptions, fn?) : Manager;
+	
+	interface SocketEmitter {
+	}
 
 	export interface Manager {
 		constructor (server, options : ManagerOptions);

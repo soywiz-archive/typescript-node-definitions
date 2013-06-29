@@ -9,13 +9,13 @@
 
 // Collections
 declare module "underscore" {
-	export function each(list: any[], iterator: (item: any) => void, context?: any) : void;
-	export function each(list: any, iterator: (item: any, key: any) => void, context?: any) : void;
+	export function each<T>(list: T[], iterator: (item: T) => void, context?: any) : void;
+	export function each<T>(list: T, iterator: (item: any, key: string) => void, context?: any) : void;
 
-	export function forEach(list: any[], iterator: (item: any) => void, context?: any) : void;
-	export function forEach(list: any, iterator: (item: any, key: any) => void, context?: any) : void;
+	export function forEach<T>(list: T[], iterator: (item: T) => void, context?: any) : void;
+	export function forEach<T>(list: T, iterator: (item: any, key: any) => void, context?: any) : void;
 	
-	export function map(list, iterator, context?);
+	export function map<T1, T2>(list: T1[], iterator: (item: T1) => T2, context?: any): T2[];
 	export function collect(list, iterator, context?);
 	
 	export function reduce(list, iterator, memo, context?);
@@ -64,12 +64,12 @@ declare module "underscore" {
 
 // Array Functions
 declare module "underscore" {
-	export function first(array : any[]) : any;
-	export function first(array : any[], n : number) : any[];
-	export function head(array : any[]) : any;
-	export function head(array : any[], n : number) : any[];
-	export function take(array : any[]) : any;
-	export function take(array : any[], n : number) : any[];
+	export function first<T>(array: T[]): T;
+	export function first<T>(array: T[], n: number): T[];
+	export function head<T>(array: T[]): T;
+	export function head<T>(array: T[], n: number): T[];
+	export function take<T>(array: T[]): T;
+	export function take<T>(array: T[], n: number): T[];
 
 	export function initial(array : any[], n? : number) : any[];
 
@@ -309,5 +309,5 @@ declare module "underscore" {
 
 	export function chain(obj: any): Chain;
 
-	function(obj: any) : any;
+	//export function(obj: any) : any;
 }
