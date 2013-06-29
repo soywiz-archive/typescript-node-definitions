@@ -69,10 +69,10 @@ declare class EventEmitter {
     on(event: string, listener: Function);
     once(event: string, listener: Function): void;
     removeListener(event: string, listener: Function): void;
-    removeAllListener(event: string): void;
+    removeAllListeners(event: string): void;
     setMaxListeners(n: number): void;
     listeners(event: string): { Function; }[];
-    emit(event: string, arg1?: any, arg2?: any): void;
+    emit(event: string, ...args: any[]): void;
 }
 
 declare class WritableStream extends EventEmitter {
@@ -222,6 +222,7 @@ declare module "http" {
 
     export class Server extends events.EventEmitter {
         listen(port: number, hostname?: string, backlog?: number, callback?: Function): void;
+		listen(port: number, hostname?: number, callback?: Function): void;
         listen(path: string, callback?: Function): void;
         listen(handle: any, listeningListener?: Function): void;
         close(cb?: any): void;
@@ -230,7 +231,7 @@ declare module "http" {
     export class ServerRequest extends stream.ReadableStream {
         method: string;
         url: string;
-        headers: string;
+        headers: any;
         trailers: string;
         httpVersion: string;
         setEncoding(encoding?: string): void;
@@ -281,8 +282,8 @@ declare module "http" {
     export var STATUS_CODES;
     export function createServer(requestListener?: (request: ServerRequest, response: ServerResponse) =>void ): Server;
     export function createClient(port?: number, host?: string): any;
-    export function request(options: any, callback?: Function): ClientRequest;
-    export function get(options: any, callback?: Function): ClientRequest;
+    export function request(options: any, callback?: (res: ClientResponse) => void): ClientRequest;
+    export function get(options: any, callback?: (res: ClientResponse) => void): ClientRequest;
     export var globalAgent: Agent;
 }
 
@@ -743,7 +744,7 @@ declare module "fs" {
     export function readlink(path: string, callback?: (err: Error, linkString: string) =>any): void;
     export function realpath(path: string, callback?: (err: Error, resolvedPath: string) =>any): void;
     export function realpath(path: string, cache: string, callback: (err: Error, resolvedPath: string) =>any): void;
-    export function realpathSync(path: string, cache?: string): string;
+    export function realpathSync(path: string, cache?: boolean): string;
     export function unlink(path: string, callback?: Function): void;
     export function unlinkSync(path: string): void;
     export function rmdir(path: string, callback?: Function): void;
@@ -920,12 +921,12 @@ declare module "crypto" {
     export function createHash(algorithm: string): Hash;
     export function createHmac(algorithm: string, key: string): Hmac;
     export interface Hash {
-        update(data: any, input_encoding?: string): void;
-        digest(encoding?: string): string;
+        update(data: any, input_encoding?: string): Hash;
+        digest(encoding?: string): any;
     }
     export interface Hmac {
-        update(data: any): void;
-        digest(encoding?: string): void;
+        update(data: any): Hmac;
+        digest(encoding?: string): any;
     }
     export function createCipher(algorithm: string, password: any): Cipher;
     export function createCipheriv(algorithm: string, key: any, iv: any): Cipher;
@@ -933,9 +934,9 @@ declare module "crypto" {
         update(data: any, input_encoding?: string, output_encoding?: string): string;
         final(output_encoding?: string): string;
         setAutoPadding(auto_padding: boolean): void;
-        createDecipher(algorithm: string, password: any): Decipher;
-        createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     }
+	createDecipher(algorithm: string, password: any): Decipher;
+	createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     export interface Decipher {
         update(data: any, input_encoding?: string, output_encoding?: string): void;
         final(output_encoding?: string): string;
@@ -1027,7 +1028,7 @@ declare module "util" {
     export function puts(...param: any[]): void;
     export function print(...param: any[]): void;
     export function log(string: string): void;
-    export function inspect(object: any, showHidden?: boolean, depth?: number, color?: boolean): void;
+    export function inspect(object: any, showHidden?: boolean, depth?: number, color?: boolean): string;
     export function isArray(object: any): boolean;
     export function isRegExp(object: any): boolean;
     export function isDate(object: any): boolean;
