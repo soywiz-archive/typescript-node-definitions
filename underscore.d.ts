@@ -3,12 +3,15 @@
 // http://underscorejs.org
 // http://github.com/documentcloud/underscore
 
-// NOTE:
-// Typescript doesn't currently support generics. This library definition
-// will benefit largely with generics when available.
-
 // Collections
 declare module "underscore" {
+	/**
+	 * Iterates over a list of elements, yielding each in turn to an iterator function.
+	 * The iterator is bound to the context object, if one is passed. Each invocation of
+	 * iterator is called with three arguments: (element, index, list). If list is a
+	 * JavaScript object, iterator's arguments will be (value, key, list). Delegates
+	 * to the native forEach function if it exists.
+	 */
 	export function each<T>(list: T[], iterator: (item: T) => void, context?: any) : void;
 	export function each<T>(list: T, iterator: (item: any, key: string) => void, context?: any) : void;
 
@@ -16,21 +19,27 @@ declare module "underscore" {
 	export function forEach<T>(list: T, iterator: (item: any, key: any) => void, context?: any) : void;
 	
 	export function map<T1, T2>(list: T1[], iterator: (item: T1) => T2, context?: any): T2[];
-	export function collect(list, iterator, context?);
+	export function collect<T1, T2>(list: T1[], iterator: (item: T1) => T2, context?: any): T2[];
 	
-	export function reduce(list, iterator, memo, context?);
-	export function inject(list, iterator, memo, context?);
-	export function foldl(list, iterator, memo, context?);
+	export function reduce<T1, T2>(list: T1[], iterator: (memo: T2, num: T1) => T2, memo: T2, context?): T2;
+	export function inject<T1, T2>(list: T1[], iterator: (memo: T2, num: T1) => T2, memo: T2, context?): T2;
+	export function foldl<T1, T2>(list: T1[], iterator: (memo: T2, num: T1) => T2, memo: T2, context?): T2;
 
 	
-	export function reduceRight(list, iterator, memo, context?);
-	export function foldr(list, iterator, memo, context?);
+	export function reduceRight<T1, T2>(list: T1[], iterator: (memo: T2, num: T1) => T2, memo: T2, context?): T2;
+	export function foldr<T1, T2>(list: T1[], iterator: (memo: T2, num: T1) => T2, memo: T2, context?): T2;
 	
-	export function find(list : any[], iterator : (item) => bool, context?) : any;
-	export function detect(list : any[], iterator : (item) => bool, context?) : any;
-	
-	export function filter(list : any[], iterator : (item) => bool, context?) : any[];
-	export function select(list : any[], iterator : (item) => bool, context?) : any[];
+	/**
+	 * Looks through each value in the list, returning the first one that passes a truth test(iterator).The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
+	 */
+	export function find<T>(list: T[], iterator: (item: T) => bool, context?): number;
+	export function detect<T>(list: T[], iterator: (item: T) => bool, context?): number;
+
+	/**
+	 * Looks through each value in the list, returning an array of all the values that pass a truth test (iterator). Delegates to the native filter method, if it exists.
+	 */	
+	export function filter<T>(list: T[], iterator: (item: T) => bool, context?): T[];
+	export function select<T>(list: T[], iterator: (item: T) => bool, context?): T[];
 
 	export function where(list : any[], properties : any) : any[];
 	export function reject(list : any[], iterator : (item) => bool, context?) : any[];

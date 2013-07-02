@@ -32,6 +32,8 @@ httpServer.listen(app.get('port'), function () {
 
 */
 
+/// <reference path="node.d.ts" />
+
 declare module "socket.io" {
 	export var version : string;
 	export var protocol: number;
@@ -103,10 +105,10 @@ declare module "socket.io" {
 		send(data: any): SocketNamespace;
 		socket(sid, readable?);
 		authorization(fn): SocketNamespace;
-		// handleDisconnect(sid, reason, raiseOnDisconnect);
-		// authorize(data, fn)
-		// handlePacket(sessid, packet)
-		// 
+
+		// Events
+		on(event: string, listener: Function): SocketNamespace;
+		on(event: 'connection', listener: (err: Error, socket: Socket) => void ): SocketNamespace;
 	}
 
 	export interface Socket extends EventEmitter {
@@ -138,8 +140,12 @@ declare module "socket.io" {
 		del(key, fn) : Socket;
 		disconnect() : Socket;
 		send(data, fn) : Socket;
-		on(name: string, callback : Function) : Socket;
-		emit(name, ...arguments: any[]) : Socket;
+		emit(name, ...arguments: any[]): Socket;
+
+		// Events
+		on(event: string, callback: Function):Socket;
+		on(event: 'disconnect', callback: (socket: Socket) => void):Socket;
+
 	}
 
 	export interface StoreClient {
