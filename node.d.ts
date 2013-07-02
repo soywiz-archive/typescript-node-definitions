@@ -935,8 +935,8 @@ declare module "crypto" {
         final(output_encoding?: string): string;
         setAutoPadding(auto_padding: boolean): void;
     }
-	createDecipher(algorithm: string, password: any): Decipher;
-	createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
+	export function createDecipher(algorithm: string, password: any): Decipher;
+	export function createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     export interface Decipher {
         update(data: any, input_encoding?: string, output_encoding?: string): void;
         final(output_encoding?: string): string;
