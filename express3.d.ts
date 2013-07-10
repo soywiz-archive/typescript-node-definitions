@@ -18,7 +18,7 @@ declare module "express3" {
 
     //export var app: Application;
 
-	export function (): Application;
+	//export function (): Application;
 
     interface Application extends Function {
         // Constructor

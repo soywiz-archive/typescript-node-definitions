@@ -1,4 +1,4 @@
-﻿module "nconf" {
+﻿declare module "nconf" {
     export var version: number;
     export var stores: any;
     export var sources: any[];
@@ -48,7 +48,7 @@
     }
 
 
-    export interface ICallbackFunction { (err?: any); };
+    export interface ICallbackFunction { (err?: any); }
 
     export class Provider {
         constructor(options: IOptions);
@@ -89,6 +89,6 @@
         clear(key: string): bool;
         merge(key: string, value: any): bool;
         reset(callback?: ICallbackFunction): bool;
-    };
+    }
 
 }
