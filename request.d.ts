@@ -3,17 +3,16 @@
 
 // https://github.com/mikeal/request
 
-declare module "request" {
-	import request = module('request');
-	import stream = module('stream');
-	import http = module('http');
-	import FormData = module('form-data');
-    
-	export function(uri: string, options?: Options, callback?: (error: any, response: any, body: any) => void): Request;
-	export function(uri: string, callback?: (error: any, response: any, body: any) => void): Request;
-	export function(options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+import stream = module('stream');
+import http = module('http');
+import FormData = module('form-data');
 
-	export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+declare function request(uri: string, options?: request.Options, callback?: (error: any, response: any, body: any) => void): request.Request;
+declare function request(uri: string, callback?: (error: any, response: any, body: any) => void): request.Request;
+declare function request(options: request.Options, callback?: (error: any, response: any, body: any) => void): request.Request;
+
+declare module request  {
+    export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export var initParams;
 	export function defaults(options, requester);
 	export function forever(agentOptions, optionsArg);
@@ -100,14 +99,14 @@ declare module "request" {
 		add(cookie: Cookie): void;
 		get(req): Cookie;
 		cookieString(req): string;
-	}
+    }
 
-	export interface Cookie {
+    export interface Cookie extends Array<{ name; value; httpOnly; }> {
 		constructor (str, req);
 		str: string;
 		expires: Date;
 		path: string;
-		[index: string]: { name; value; httpOnly; };
-		toString(): string;
+        toString(): string;
 	}
+    
 }
