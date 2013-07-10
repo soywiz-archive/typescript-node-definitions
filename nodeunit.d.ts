@@ -41,7 +41,6 @@
         tearDown? (callback: ICallbackFunction);
     }
 
-    export interface ICallbackFunction { (err?: any): void; };
+    export interface ICallbackFunction { (err?: any): void; }
 }
-
 
