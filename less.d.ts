@@ -1,4 +1,4 @@
-module "less" {
+declare module "less" {
 	export var version: number[];
 	export class tree {
 		toCSS(options: RenderOptions) : string;
