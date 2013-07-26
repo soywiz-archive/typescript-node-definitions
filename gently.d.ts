@@ -1,6 +1,6 @@
 // Usage: In typescript you must use seperate statements for importing and creating the class:
 // import Gently = require('gently');
-// var gently = new Gently()
+// var gently: Gently = new Gently();
 
 
 declare module "gently" {
