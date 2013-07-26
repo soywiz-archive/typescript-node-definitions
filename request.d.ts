@@ -12,7 +12,7 @@ declare function request(uri: string, callback?: (error: any, response: any, bod
 declare function request(options: request.Options, callback?: (error: any, response: any, body: any) => void): request.Request;
 
 declare module request  {
-    export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
+//    export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export var initParams;
 	export function defaults(options, requester);
 	export function forever(agentOptions, optionsArg);
