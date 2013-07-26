@@ -1,44 +1,47 @@
-module "nock" {
-	export import nock = module('nock');
+declare module "nock" {
+    export = nock;
 
-    function(host: string, options?: Options): Scope;
-    function cleanAll(): void;
-    var recorder: Recorder;
+    function nock (host: string, options?: nock.Options): nock.Scope;
 
-    class Scope {
-        get(path: string, data?: string): Scope;
-        post(path: string, data?: string): Scope;
-        put(path: string, data?: string): Scope;
-        head(path: string): Scope;
-        delete(path: string, data?: string): Scope;
-        intercept(path: string, verb: string, body?: string, options?: any);
+    module nock {
+        function cleanAll(): void;
+        var recorder: Recorder;
 
-        reply(responseCode: number, body?: string, headers?: any): Scope;
-        reply(responseCode: number, callback: (uri: string, body:string) => string, headers?: any): Scope;
-        replyWithFile(responseCode: number, fileName: string): Scope;
+        class Scope {
+            get(path: string, data?: string): Scope;
+            post(path: string, data?: string): Scope;
+            put(path: string, data?: string): Scope;
+            head(path: string): Scope;
+            delete(path: string, data?: string): Scope;
+            intercept(path: string, verb: string, body?: string, options?: any);
 
-        defaultReplyHeaders(headers: any);
-        matchHeader(name: string, value: string);
-        
-        filteringPath(regex: RegExp, replace: string): Scope;
-        filteringPath(fn: (path:string) => string): Scope;
-        filteringRequestBody(regex: RegExp, replace: string): Scope;
-        filteringRequestBody(fn: (path:string) => string): Scope;
+            reply(responseCode: number, body?: string, headers?: any): Scope;
+            reply(responseCode: number, callback: (uri: string, body: string) => string, headers?: any): Scope;
+            replyWithFile(responseCode: number, fileName: string): Scope;
 
-        persist(): Scope;
-        log(out: () => void): Scope;
+            defaultReplyHeaders(headers: any);
+            matchHeader(name: string, value: string);
 
-        done(): void;
-        isDone(): bool;
-        restore(): void;
-    }
-    
-    class Recorder {
-        rec(capture?: bool): void;
-        play(): string[];
-    }
+            filteringPath(regex: RegExp, replace: string): Scope;
+            filteringPath(fn: (path: string) => string): Scope;
+            filteringRequestBody(regex: RegExp, replace: string): Scope;
+            filteringRequestBody(fn: (path: string) => string): Scope;
 
-    interface Options {
-        allowUnmocked?: bool;
+            persist(): Scope;
+            log(out: () => void ): Scope;
+
+            done(): void;
+            isDone(): bool;
+            restore(): void;
+        }
+
+        class Recorder {
+            rec(capture?: bool): void;
+            play(): string[];
+        }
+
+        interface Options {
+            allowUnmocked?: bool;
+        }
     }
 }
