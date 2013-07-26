@@ -1,9 +1,13 @@
-module "gently" {
-    export import gently = module("gently");
+// Usage: In typescript you must use seperate statements for importing and creating the class:
+// import Gently = require('gently');
+// var gently: Gently = new Gently();
 
-    function new(): Gently;
+
+declare module "gently" {
+    export = Gently;
     
     class Gently {
+		constructor();
         hijacked: any[];
 
         expect(obj: any, method: string, stubFn?: (...args: any[]) => any): (...args: any[]) => any;
