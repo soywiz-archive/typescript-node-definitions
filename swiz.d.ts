@@ -1,4 +1,4 @@
-module "swiz" {
+declare module "swiz" {
     export class Cidr {
         constructor(x:string, y?:string);
         isInCIDR(x:any):bool;
