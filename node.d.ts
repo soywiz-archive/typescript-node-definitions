@@ -994,12 +994,23 @@ declare module "stream" {
         destroySoon(): void;
     }
 
+    export class Readable extends events.EventEmitter {
+        readable: boolean;
+        setEncoding(encoding: string): void;
+        pause(): void;
+        resume(): void;
+        destroy(): void;
+        push(chunk, encoding?): void;
+        pipe(destination: WriteStream, options?: { end?: boolean; }): void;
+    }
+
     export class ReadableStream extends events.EventEmitter {
         readable: boolean;
         setEncoding(encoding: string): void;
         pause(): void;
         resume(): void;
         destroy(): void;
+        push(chunk, encoding?): void;
         pipe(destination: WriteStream, options?: { end?: boolean; }): void;
     }
 

@@ -19,8 +19,9 @@ declare module "mongodb" {
 		public collectionsInfo(collectionName: string, callback?: (err, result) => void );
 		public collectionNames(collectionName: string, options: any, callback?: (err, result) => void );
 
-		public collection(collectionName: string, callback: (err: any, collection: Collection) => void );
-		public collection(collectionName: string, options: MongoCollectionOptions, callback: (err: any, collection: Collection) => void );
+        public collection(collectionName: string): Collection;
+        public collection(collectionName: string, callback: (err: any, collection: Collection) => void ): Collection;
+        public collection(collectionName: string, options: MongoCollectionOptions, callback: (err: any, collection: Collection) => void ): Collection;
 
 		public collections(callback: (err: any, collections: Collection[]) => void );
 		public eval(code: any, parameters: any[], options?: any, callback?: (err, result) => void );
@@ -225,7 +226,8 @@ declare module "mongodb" {
 		geoNear(x, y, options, callback);
 		geoHaystackSearch(x, y, options, callback);
 		indexes(callback);
-		aggregate(pipeline:any[], options, callback);
+        aggregate(pipeline: any[], callback: (err: Error, results: any) => void);
+        aggregate(pipeline: any[], options, callback: (err: Error, results: any) => void);
 		stats(options, callback);
 		
 		hint;
