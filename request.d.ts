@@ -1,17 +1,17 @@
-/// <reference path="node.d.ts" />
-/// <reference path="form-data.d.ts" />
+/// <reference path="C:\Projects\typescript-node-definitions\node.d.ts" />
+/// <reference path="C:\Projects\typescript-node-definitions\form-data.d.ts" />
 
 // https://github.com/mikeal/request
-
-import stream = module('stream');
-import http = module('http');
-import FormData = module('form-data');
-
-declare function request(uri: string, options?: request.Options, callback?: (error: any, response: any, body: any) => void): request.Request;
+/*
+declare function request(uri: string, options?: request.Options, callback?: (error: any, response: any, body: any) => void ): request.Request;
 declare function request(uri: string, callback?: (error: any, response: any, body: any) => void): request.Request;
 declare function request(options: request.Options, callback?: (error: any, response: any, body: any) => void): request.Request;
+*/
+declare module "request"  {
+    import stream = module('stream');
+    import http = module('http');
+    import FormData = module('form-data');
 
-declare module request  {
 //    export function request(uri: string, options: Options, callback?: (error: any, response: any, body: any) => void): Request;
 	export var initParams;
 	export function defaults(options, requester);
