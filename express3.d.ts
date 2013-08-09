@@ -42,12 +42,18 @@ declare module "express3" {
         param(name: String, callback: (req: Request, res: Response, next, id) => void);
 
         get(path:String, ...callbacks: Function[] );
-        post(path:String, ...callbacks: Function[] );
+        post(path: String, ...callbacks: Function[]);
+        put(path: String, ...callbacks: Function[]);
+        delete(path: String, ...callbacks: Function[]);
+        head(path: String, ...callbacks: Function[]);
 		options(path:String, ...callbacks: Function[]);
         all(path:String, ...callbacks: Function[] );
 
         get(path:RegExp, ...callbacks: Function[] );
-        post(path:RegExp, ...callbacks: Function[] );
+        post(path: RegExp, ...callbacks: Function[]);
+        put(path: RegExp, ...callbacks: Function[]);
+        delete(path: RegExp, ...callbacks: Function[]);
+        head(path: RegExp, ...callbacks: Function[]);
 		options(path:RegExp, ...callbacks: Function[]);
         all(path:RegExp, ...callbacks: Function[] );
 

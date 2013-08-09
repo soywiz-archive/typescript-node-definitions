@@ -21,20 +21,25 @@ declare module "aws-sdk" {
     export class SQS {
         constructor(options?: any);
         public client: Sqs.Client;
-    };
+    }
     
     export class SES {
         constructor(options?: any);
         public client: Ses.Client;
-    };
+    }
+
+    export class SNS {
+        constructor(options?: any);
+        public client: Sns.Client;
+    }
 
 	export class SimpleWorkflow {
         constructor(options?: any);
         public client: Swf.Client;
-    };
+    }
 
     
-    declare module Sqs {
+    module Sqs {
 
         export interface Client {
             config: ClientConfig;
@@ -155,7 +160,7 @@ declare module "aws-sdk" {
 
     }
 
-    declare module Ses {
+    module Ses {
 
         export interface Client {
             config: ClientConfig;
@@ -198,7 +203,7 @@ declare module "aws-sdk" {
 
     }
 	
-	declare module Swf {
+	module Swf {
 
         export class Client {
             //constructor(options?: any);
@@ -810,6 +815,41 @@ declare module "aws-sdk" {
 
 
 
-    }
+	}
+
+	module Sns {
+
+	    export interface Client {
+	        config: ClientConfig;
+
+	        publicTopic(params: PublishRequest, callback: (err: any, data: PublishResult) => void );
+	        createTopic(params: CreateTopicRequest, callback: (err: any, data: CreateTopicResult) => void );
+	        deleteTopic(params: DeleteTopicRequest, callback: (err: any, data: any) => void );
+	    }
+
+	    export interface PublishRequest {
+	        TopicArn?: string;
+	        Message?: string;
+	        MessageStructure?: string;
+	        Subject?: string;
+	    }
+
+	    export interface PublishResult {
+	        MessageId?: string;
+	    }
+
+	    export interface CreateTopicRequest {
+	        Name?: string;
+	    }
+
+	    export interface CreateTopicResult {
+	        TopicArn?: string;
+	    }
+
+	    export interface DeleteTopicRequest {
+	        TopicArn?: string;
+	    }
+
+	}
 
 }
