@@ -11,9 +11,9 @@ var app:express3.Application = express();
 */
 
 declare module "express3" {
-	import stream = module("stream");
-	import express3 = module("express3");
-    import http = module("http")
+    import stream = require("stream");
+    import express3 = require("express3");
+    import http = require("http")
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -30,8 +30,8 @@ declare module "express3" {
         enable(name: String):void;
         disable(name: String):void;
 
-        enabled(name: String):bool;
-        disabled(name: String):bool;
+        enabled(name: String):boolean;
+        disabled(name: String):boolean;
 
         configure(callback: () => void):void;
         configure(env: String, callback: () => void):void;
@@ -91,21 +91,21 @@ declare module "express3" {
         accepts(type: String[]): void;
         accepted: RequestAccepted[];
 
-        is(type: String): bool;
+        is(type: String): boolean;
         ip: String;
         ips: String[];
         path: String;
         host: String;
-        fresh: bool;
-        stale: bool;
-        xhr: bool;
+        fresh: boolean;
+        stale: boolean;
+        xhr: boolean;
         protocol: String;
-        secure: bool;
+        secure: boolean;
         subdomains: String[];
         acceptedLanguages: String[];
         acceptedCharsets: String[];
-        acceptsCharset(charset: String): bool;
-        acceptsLanguage(lang: String): bool;
+        acceptsCharset(charset: String): boolean;
+        acceptsLanguage(lang: String): boolean;
     }
 
     interface RequestAccepted {
@@ -129,7 +129,7 @@ declare module "express3" {
         path?: string;
         name?: string;
         type?: string;
-        hash?: bool;
+        hash?: boolean;
         lastModifiedDate?: Date;
         _writeStream?: any;
         length?: number;
@@ -194,16 +194,16 @@ declare module "express3" {
     interface ResponseCookieOptions {
         domain?: String;
         path?: String;
-        secure?: bool;
+        secure?: boolean;
         expires?: Date;
         maxAge?: number;
-        httpOnly?: bool;
-        signed?: bool;
+        httpOnly?: boolean;
+        signed?: boolean;
     }
 }
 
 declare module "http" {
-    import express3 = module("express3");
+    import express3 = require("express3");
 
     export function createServer(app: any): Server;
 }
