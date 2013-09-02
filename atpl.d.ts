@@ -1,4 +1,4 @@
-﻿module "atpl" {
+﻿declare module "atpl" {
 	export function compile(templateString, options);
 	export function __express(filename, options, callback);
 

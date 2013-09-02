@@ -32,29 +32,29 @@ declare module "underscore" {
 	/**
 	 * Looks through each value in the list, returning the first one that passes a truth test(iterator).The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
 	 */
-	export function find<T>(list: T[], iterator: (item: T) => bool, context?): number;
-	export function detect<T>(list: T[], iterator: (item: T) => bool, context?): number;
+	export function find<T>(list: T[], iterator: (item: T) => boolean, context?): number;
+	export function detect<T>(list: T[], iterator: (item: T) => boolean, context?): number;
 
 	/**
 	 * Looks through each value in the list, returning an array of all the values that pass a truth test (iterator). Delegates to the native filter method, if it exists.
 	 */	
-	export function filter<T>(list: T[], iterator: (item: T) => bool, context?): T[];
-	export function select<T>(list: T[], iterator: (item: T) => bool, context?): T[];
+	export function filter<T>(list: T[], iterator: (item: T) => boolean, context?): T[];
+	export function select<T>(list: T[], iterator: (item: T) => boolean, context?): T[];
 
 	export function where(list : any[], properties : any) : any[];
-	export function reject(list : any[], iterator : (item) => bool, context?) : any[];
+	export function reject(list : any[], iterator : (item) => boolean, context?) : any[];
 	
-	export function all(list : any[], iterator : (item) => bool, context?) : bool;
-	export function every(list : any[], iterator : (item) => bool, context?) : bool;
+	export function all(list : any[], iterator : (item) => boolean, context?) : boolean;
+	export function every(list : any[], iterator : (item) => boolean, context?) : boolean;
 
-	export function any(list : any[], iterator : (item) => bool, context?) : bool;
-	export function some(list : any[], iterator : (item) => bool, context?) : bool;
+	export function any(list : any[], iterator : (item) => boolean, context?) : boolean;
+	export function some(list : any[], iterator : (item) => boolean, context?) : boolean;
 
-	export function contains(list : any[], value: any) : bool;
-	export function include(list : any[], value: any) : bool;
+	export function contains(list : any[], value: any) : boolean;
+	export function include(list : any[], value: any) : boolean;
 
-	export function invoke(list : any[], methodName: string, ...arguments : any[]) : bool;
-	export function invoke(list : any[], method: Function, ...arguments : any[]) : bool;
+	export function invoke(list : any[], methodName: string, ...arguments : any[]) : boolean;
+	export function invoke(list : any[], method: Function, ...arguments : any[]) : boolean;
 
 	export function pluck(list : any[], propertyName : string) : any[];
 	export function max(list : any[], iterator : (item) => any, context?) : any;
@@ -89,7 +89,7 @@ declare module "underscore" {
 
 	export function compact(array : any[]) : any[];
 
-	export function flatten(array : any[], shallow?: bool) : any[];
+	export function flatten(array : any[], shallow?: boolean) : any[];
 
 	export function without(array : any[], ...values: any[]) : any[];
 	export function without(array : any[], values: any[]) : any[];
@@ -97,14 +97,14 @@ declare module "underscore" {
 	export function union(...arrays : any[][]) : any[];
 	export function intersection(...arrays : any[][]) : any[];
 	export function difference(array : any[], ...others : any[][]) : any[];
-	export function uniq(array : any[], isSorted?: bool, iterator?: (item) => bool) : any[];
+	export function uniq(array : any[], isSorted?: boolean, iterator?: (item) => boolean) : any[];
 	export function zip(...arrays : any[][]) : any[][];
 	
 	export function object(list: any[][]) : any;
 	export function object(list: any[], values: any[]) : any;
 
-	export function indexOf(list: any[], value: any, isSorted?: bool) : number;
-	export function lastIndexOf(list: any[], value: any, isSorted?: bool) : number;
+	export function indexOf(list: any[], value: any, isSorted?: boolean) : number;
+	export function lastIndexOf(list: any[], value: any, isSorted?: boolean) : number;
 	export function sortedIndex(list: any[], value: any, iterator?: (item) => any) : number;
 	
 	export function range(count: number) : number[];
@@ -144,23 +144,23 @@ declare module "underscore" {
 	export function clone(object : any) : any;
 
 	export function tap(object : any, interceptor : (object: any) => void) : any;
-	export function has(object : any, key: string) : bool;
-	export function isEqual(object : any, key: string) : bool;
-	export function isEmpty(object : any) : bool;
-	export function isElement(object : any) : bool;
-	export function isArray(object : any) : bool;
-	export function isObject(object : any) : bool;
-	export function isArguments(object : any) : bool;
-	export function isFunction(object : any) : bool;
-	export function isString(object : any) : bool;
-	export function isNumber(object : any) : bool;
-	export function isFinite(object : any) : bool;
-	export function isBoolean(object : any) : bool;
-	export function isDate(object : any) : bool;
-	export function isRegExp(object : any) : bool;
-	export function isNaN(object : any) : bool;
-	export function isNull(object : any) : bool;
-	export function isUndefined(object : any) : bool;
+	export function has(object : any, key: string) : boolean;
+	export function isEqual(object : any, key: string) : boolean;
+	export function isEmpty(object : any) : boolean;
+	export function isElement(object : any) : boolean;
+	export function isArray(object : any) : boolean;
+	export function isObject(object : any) : boolean;
+	export function isArguments(object : any) : boolean;
+	export function isFunction(object : any) : boolean;
+	export function isString(object : any) : boolean;
+	export function isNumber(object : any) : boolean;
+	export function isFinite(object : any) : boolean;
+	export function isBoolean(object : any) : boolean;
+	export function isDate(object : any) : boolean;
+	export function isRegExp(object : any) : boolean;
+	export function isNaN(object : any) : boolean;
+	export function isNull(object : any) : boolean;
+	export function isUndefined(object : any) : boolean;
 }
 
 // Utility Functions
@@ -197,20 +197,20 @@ declare module "underscore" {
 		reduceRight(iterator, memo, context?) : Chain;
 		foldr(iterator, memo, context?) : Chain;
 	
-		find(iterator : (item) => bool, context?)  : Chain;
-		detect(iterator : (item) => bool, context?) : Chain;
+		find(iterator : (item) => boolean, context?)  : Chain;
+		detect(iterator : (item) => boolean, context?) : Chain;
 	
-		filter(iterator : (item) => bool, context?) : Chain;
-		select(iterator : (item) => bool, context?) : Chain;
+		filter(iterator : (item) => boolean, context?) : Chain;
+		select(iterator : (item) => boolean, context?) : Chain;
 
 		where(properties : any) : any[];
-		reject(iterator : (item) => bool, context?) : Chain;
+		reject(iterator : (item) => boolean, context?) : Chain;
 	
-		all(iterator : (item) => bool, context?) : Chain;
-		every(iterator : (item) => bool, context?) : Chain;
+		all(iterator : (item) => boolean, context?) : Chain;
+		every(iterator : (item) => boolean, context?) : Chain;
 
-		any(iterator : (item) => bool, context?) : Chain;
-		some(iterator : (item) => bool, context?) : Chain;
+		any(iterator : (item) => boolean, context?) : Chain;
+		some(iterator : (item) => boolean, context?) : Chain;
 
 		contains(value: any) : Chain;
 		include(value: any) : Chain;
@@ -244,7 +244,7 @@ declare module "underscore" {
 
 		compact() : Chain;
 
-		flatten(shallow?: bool) : Chain;
+		flatten(shallow?: boolean) : Chain;
 
 		without(...values: any[]) : Chain;
 		without(values: any[]) : Chain;
@@ -252,13 +252,13 @@ declare module "underscore" {
 		union(...arrays : any[][]) : Chain;
 		intersection(...arrays : any[][]) : Chain;
 		difference(...others : any[][]) : Chain;
-		uniq(isSorted?: bool, iterator?: (item) => bool) : Chain;
+		uniq(isSorted?: boolean, iterator?: (item) => boolean) : Chain;
 		zip(...arrays : any[][]) : Chain;
 	
 		object(values: any[]) : Chain;
 
-		indexOf(value: any, isSorted?: bool) : Chain;
-		lastIndexOf(value: any, isSorted?: bool) : Chain;
+		indexOf(value: any, isSorted?: boolean) : Chain;
+		lastIndexOf(value: any, isSorted?: boolean) : Chain;
 		sortedIndex(value: any, iterator?: (item) => any) : Chain;
 	
 		range() : Chain;
