@@ -920,6 +920,7 @@ declare module "crypto" {
     export function createCredentials(details: CredentialDetails): Credentials;
     export function createHash(algorithm: string): Hash;
     export function createHmac(algorithm: string, key: string): Hmac;
+    export function createHmac(algorithm: string, key: NodeBuffer): Hmac;
     export interface Hash {
         update(data: any, input_encoding?: string): Hash;
         digest(encoding?: string): any;
@@ -931,15 +932,19 @@ declare module "crypto" {
     export function createCipher(algorithm: string, password: any): Cipher;
     export function createCipheriv(algorithm: string, key: any, iv: any): Cipher;
     export interface Cipher {
-        update(data: any, input_encoding?: string, output_encoding?: string): string;
-        final(output_encoding?: string): string;
+        update(data: any, input_encoding: string, output_encoding: string): string;
+        update(data: any, input_encoding?: string): NodeBuffer;
+        final(output_encoding: string): string;
+        final(): NodeBuffer;
         setAutoPadding(auto_padding: boolean): void;
     }
 	export function createDecipher(algorithm: string, password: any): Decipher;
 	export function createDecipheriv(algorithm: string, key: any, iv: any): Decipher;
     export interface Decipher {
-        update(data: any, input_encoding?: string, output_encoding?: string): void;
-        final(output_encoding?: string): string;
+        update(data: any, input_encoding: string, output_encoding: string): string;
+        update(data: any, input_encoding?: string): NodeBuffer;
+        final(output_encoding: string): string;
+        final(): NodeBuffer;
         setAutoPadding(auto_padding: boolean): void;
     }
     export function createSign(algorithm: string): Signer;
@@ -966,7 +971,8 @@ declare module "crypto" {
     }
     export function getDiffieHellman(group_name: string): DiffieHellman;
     export function pbkdf2(password: string, salt: string, iterations: number, keylen: number, callback: (err: Error, derivedKey: string) => any): void;
-    export function randomBytes(size: number, callback?: (err: Error, buf: NodeBuffer) =>void );
+    export function randomBytes(size: number, callback?: (err: Error, buf: NodeBuffer) => void) : NodeBuffer;
+    export function pseudoRandomBytes(size: number, callback?: (err: Error, buf: NodeBuffer) => void) : NodeBuffer;
 }
 
 declare module "stream" {
