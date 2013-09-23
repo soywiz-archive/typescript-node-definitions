@@ -1,19 +1,50 @@
-﻿///<reference path='node.d.ts' />
-///<reference path='superagent.d.ts' />
+﻿/// <reference path='./superagent.d.ts' />
 
-declare module "supertest" {
-	import supertest = module('supertest');
-	import superagent = module('superagent');
+declare module "supertest"
+{
+	import superagent = require('superagent');
 
-	export class TestRequest extends superagent.Request {
-		serverAddress(app: any, path: string): TestRequest;
-		expect(responseCode: number, cb?: (err: Error, res: superagent.Response) => void): TestRequest;
-		expect(responseBody: string, cb?: (err: Error, res: superagent.Response) => void): TestRequest;
-		expect(headerKey: string, headerValue: string, cb?: (err: Error, res: superagent.Response) => void): TestRequest;
-		assert(res: any, cb?: (err: Error, res: superagent.Response) => void);
+	module supertest {
+		interface Test extends superagent.Request {
+			url: string;
+			serverAddress(app: any, path: string): string;
+			expect(status: number, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(status: number, body: string, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(body: string, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(body: RegExp, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(body: Object, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(field: string, val: string, callback?: (err: Error, res: superagent.Response) => void): Test;
+			expect(field: string, val: RegExp, callback?: (err: Error, res: superagent.Response) => void): Test;
+		}
+
+		interface SuperTest {
+			get(url: string): Test;
+			post(url: string): Test;
+			put(url: string): Test;
+			head(url: string): Test;
+			del(url: string): Test;
+			options(url: string): Test;
+			trace(url: string): Test;
+			copy(url: string): Test;
+			lock(url: string): Test;
+			mkcol(url: string): Test;
+			move(url: string): Test;
+			propfind(url: string): Test;
+			proppatch(url: string): Test;
+			unlock(url: string): Test;
+			report(url: string): Test;
+			mkactivity(url: string): Test;
+			checkout(url: string): Test;
+			merge(url: string): Test;
+			//m-search(url: string): Test;
+			notify(url: string): Test;
+			subscribe(url: string): Test;
+			unsubscribe(url: string): Test;
+			patch(url: string): Test;
+		}
 	}
 
-	//export function agent(app: any): TestRequest;
-	export function(app: any) : TestRequest;
-	export function(url?: string, cb?: (res: superagent.Response) => void) : TestRequest;
+	function supertest(app: any): supertest.SuperTest;
+
+	export = supertest;
 }
