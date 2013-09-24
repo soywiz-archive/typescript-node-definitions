@@ -37,8 +37,8 @@
     //    exports.testgroup = testGroup;
 
     export interface ITestGroup {
-        setUp? (callback: ICallbackFunction);
-        tearDown? (callback: ICallbackFunction);
+        setUp?: (callback: ICallbackFunction) => void;
+        tearDown?: (callback: ICallbackFunction) => void;
     }
 
     export interface ICallbackFunction { (err?: any): void; }
