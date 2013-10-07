@@ -148,6 +148,7 @@ declare class NodeProcess extends EventEmitter {
     umask(mask?: number): number;
     uptime(): number;
     hrtime(): number[];
+    hrtime(start: number[]): number[];
 }
 
 // Buffer class
