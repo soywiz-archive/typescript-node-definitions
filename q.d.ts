@@ -13,9 +13,9 @@ declare module "q" {
 
 		public then(fulfilled? , rejected? , progressed? ) : makePromise;
 
-		public isResolved() : bool;
-		public isFulfilled() : bool;
-		public isRejected() : bool;
+		public isResolved() : boolean;
+		public isFulfilled() : boolean;
+		public isRejected() : boolean;
         public when(fulfilled?, rejected?, progressed?) : makePromise;
 		public spread(fulfilled?, rejected?) : makePromise;
 		public send(op) : makePromise;

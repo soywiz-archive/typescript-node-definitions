@@ -11,28 +11,26 @@ declare var beforeEach : IMochaTest;
 
 declare var afterEach : IMochaTest;
 
-declare interface IMochaDescribe {
+interface IMochaDescribe {
     (title: string, cb?: () => void) : void;
 }
 
-declare interface IMochaDescribeWithSkip extends IMochaDescribe {
+interface IMochaDescribeWithSkip extends IMochaDescribe {
     skip : IMochaDescribe;
     only : IMochaDescribe;
 }
 
-declare interface IMochaTest {
+interface IMochaTest {
     (cb?: () => void) : void;
     (cb?: (done:(err? : Error) => void) => void) : void;
     (title: string, cb?: () => void) : void;
     (title: string, cb?: (done:(err? : Error) => void) => void) : void;
 }
 
-declare interface IMochaTestWithSkip extends IMochaTest {
+interface IMochaTestWithSkip extends IMochaTest {
     skip : IMochaTest;
     only : IMochaTest;
 }
-
-
 
 // TDD
 declare function suite(title: string, cb: () => void);

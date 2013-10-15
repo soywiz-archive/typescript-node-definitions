@@ -16,8 +16,8 @@ declare module "less" {
 	}
 
 	interface RenderOptions {
-		compress?: bool;
-		yuicompress?: bool;
+		compress?: boolean;
+		yuicompress?: boolean;
 	}
 
 	export function render(input : string, callback : (err : Error, result: string) => void) : void;

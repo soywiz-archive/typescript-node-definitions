@@ -1,7 +1,7 @@
 /// <reference path="node.d.ts" />
 
 declare module "imagemagick" {
-	import child_process = module("child_process");
+	import child_process = require("child_process");
 
 	interface _identify {
 		(path: string, callback: (err: Error, features: Features) => void): child_process.ChildProcess;
@@ -39,11 +39,11 @@ declare module "imagemagick" {
 		dstPath?: string;//: null,
 		quality?: number;//: 0.8,
 		format?: string;//: 'jpg',
-		progressive?: bool;//: false,
+		progressive?: boolean;//: false,
 		colorspace?;//: null,
 		width?: number;//: 0,
 		height?: number;//: 0,
-		strip?: bool;//: true,
+		strip?: boolean;//: true,
 		filter?: string;//: 'Lagrange',
 		sharpening?: number;//: 0.2,
 		customArgs?: any[];//: [],

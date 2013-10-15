@@ -1,68 +1,83 @@
-﻿///<reference path='node.d.ts' />
+﻿declare module "superagent" {
+	module superagent {
+		interface Response {
+			text: string;
+			body: any;
+			files: any;
+			res: any;
+			header: any;
+			type: string;
+			charset: string;
+			status: number;
+			statusType: number;
+			info: boolean;
+			ok: boolean;
+			redirect: boolean;
+			clientError: boolean;
+			serverError: boolean;
+			error: any;
+			accepted: boolean;
+			noContent: boolean;
+			badRequest: boolean;
+			unauthorized: boolean;
+			notAcceptable: boolean;
+			notFound: boolean;
+			forbidden: boolean;
+			get(header: string): string;
+		}
 
-declare module "superagent" {
-	import superagent = module('superagent');
+		interface Request {
+			attach(field: string, file: string, filename: string): Request;
+			redirects(n: number): Request;
+			part(): Request;
+			set(field: string, val: string): Request;
+			set(field: Object): Request;
+			get(field: string): string;
+			type(val: string): Request;
+			query(val: Object): Request;
+			send(data: string): Request;
+			send(data: Object): Request;
+			write(data: string, encoding: string): boolean;
+			write(data: NodeBuffer, encoding: string): boolean;
+			pipe(stream: WritableStream, options?: Object): WritableStream;
+			buffer(val: boolean): Request;
+			timeout(ms: number): Request;
+			clearTimeout(): Request;
+			abort(): void;
+			auth(user: string, name: string): Request;
+			field(name: string, val: string): Request;
+			end(callback?: (err: Error, res: Response) => void): Request;
+		}
 
-	export interface Response {
-		text: string;
-		header: any;
-		headers: any;
-		type: string;
-		status: number;
-		statusCode: number;
-		statusType: number;
-		info: any;
-		ok: bool;
-		redirect: bool;
-		req: any;
-		res: any;
+		interface Agent {
+			get(url: string, callback?: (err: Error, res: Response) => void): Request;
+			post(url: string, callback?: (err: Error, res: Response) => void): Request;
+			put(url: string, callback?: (err: Error, res: Response) => void): Request;
+			head(url: string, callback?: (err: Error, res: Response) => void): Request;
+			del(url: string, callback?: (err: Error, res: Response) => void): Request;
+			options(url: string, callback?: (err: Error, res: Response) => void): Request;
+			trace(url: string, callback?: (err: Error, res: Response) => void): Request;
+			copy(url: string, callback?: (err: Error, res: Response) => void): Request;
+			lock(url: string, callback?: (err: Error, res: Response) => void): Request;
+			mkcol(url: string, callback?: (err: Error, res: Response) => void): Request;
+			move(url: string, callback?: (err: Error, res: Response) => void): Request;
+			propfind(url: string, callback?: (err: Error, res: Response) => void): Request;
+			proppatch(url: string, callback?: (err: Error, res: Response) => void): Request;
+			unlock(url: string, callback?: (err: Error, res: Response) => void): Request;
+			report(url: string, callback?: (err: Error, res: Response) => void): Request;
+			mkactivity(url: string, callback?: (err: Error, res: Response) => void): Request;
+			checkout(url: string, callback?: (err: Error, res: Response) => void): Request;
+			merge(url: string, callback?: (err: Error, res: Response) => void): Request;
+			//m-search(url: string, callback?: (err: Error, res: Response) => void): Request;
+			notify(url: string, callback?: (err: Error, res: Response) => void): Request;
+			subscribe(url: string, callback?: (err: Error, res: Response) => void): Request;
+			unsubscribe(url: string, callback?: (err: Error, res: Response) => void): Request;
+			patch(url: string, callback?: (err: Error, res: Response) => void): Request;
+			parse(fn: Function): Request;
+		}
 	}
 
-	export class Request {
-		auth(user: string, name: string): Request;
-		redirects(count: number): Request;
-		type(type: string): Request;
-		get(url: string): Request;
-		del(url: string): Request;
-		head(url: string): Request;
-		post(url: string): Request;
-		query(object: any): Request;
-		send(object: any): Request;
-		set(key: string, value: any): Request;
-		field(key: string, value: any): Request;
-		attach(key: string, file: any): Request;
-		end(callback: (err: Error, res: Response) => void): Request;
-	}
+	function superagent(): superagent.Agent;
 
-	export interface Agent {
-	}
-
-	export interface Part {
-	}
-
-	export function agent(): Agent;
-	export function get (url: string): Request;
-	export function post(url: string): Request;
-	export function put();
-	export function head();
-	export function del();
-	export function options();
-	export function trace();
-	export function copy();
-	export function lock();
-	export function mkcol();
-	export function move();
-	export function propfind();
-	export function proppatch();
-	export function unlock();
-	export function report();
-	export function mkactivity();
-	export function checkout();
-	export function merge();
-	//export function 'm-search'();
-	export function notify();
-	export function subscribe();
-	export function unsubscribe();
-	export function patch();
-	export function(url?: string, cb?: (err: Error, res: Response) => void): Request;
+	export = superagent;
 }

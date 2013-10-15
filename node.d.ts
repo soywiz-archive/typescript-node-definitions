@@ -148,6 +148,7 @@ declare class NodeProcess extends EventEmitter {
     umask(mask?: number): number;
     uptime(): number;
     hrtime(): number[];
+    hrtime(start: number[]): number[];
 }
 
 // Buffer class
@@ -622,7 +623,7 @@ declare module "net" {
         destroy(): void;
         pause(): void;
         resume(): void;
-        setTimeout(timeout: number, callback?: Function); void;
+        setTimeout(timeout: number, callback?: Function): void;
         setNoDelay(noDelay?: boolean): void;
         setKeepAlive(enable?: boolean, initialDelay?: number): void;
         address(): { port: number; family: string; address: string; };
@@ -1000,12 +1001,23 @@ declare module "stream" {
         destroySoon(): void;
     }
 
+    export class Readable extends events.EventEmitter {
+        readable: boolean;
+        setEncoding(encoding: string): void;
+        pause(): void;
+        resume(): void;
+        destroy(): void;
+        push(chunk, encoding?): void;
+        pipe(destination: WriteStream, options?: { end?: boolean; }): void;
+    }
+
     export class ReadableStream extends events.EventEmitter {
         readable: boolean;
         setEncoding(encoding: string): void;
         pause(): void;
         resume(): void;
         destroy(): void;
+        push(chunk, encoding?): void;
         pipe(destination: WriteStream, options?: { end?: boolean; }): void;
     }
 
