@@ -63,12 +63,14 @@ declare module "express3" {
 
         routes: any;
 
-        listen(port: number):void;
+        listen(port: number, host?: string, callback?: Function):void;
+        listen(socket: string, callback?: Function):void;
 
-        router:(req: Request, res: Response, next?: Function) => void;
+        router:(req: Request, res: Response, next: Function) => void;
 
         // More:
-        use(item: (req: Request, res: Response, next?: Function) => void): Application;
+        use(item: (req: Request, res: Response, next: Function) => void): Application;
+        use(path: string, item: (req: Request, res: Response, next: Function) => void): Application;
 
         // connect Middlewares:
         //static(path: String): (req: Request, res: Response, next?: Function) => void;
