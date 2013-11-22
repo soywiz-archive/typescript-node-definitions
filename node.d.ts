@@ -775,7 +775,7 @@ declare module "fs" {
     export function readFile(filename: string, encoding: string, callback: (err: Error, data: string) => void ): void;
     export function readFile(filename: string, callback: (err: Error, data: NodeBuffer) => void ): void;
     export function readFileSync(filename: string, options?: { flag?: string; }): NodeBuffer;
-    export function readFileSync(filename: string, options?: { encoding: string; flag?: string; }): string;
+    export function readFileSync(filename: string, options: { encoding: string; flag?: string; }): string;
     export function writeFile(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }, callback?: Function): void;
     export function writeFile(filename: string, data: any, callback: Function): void;
     export function writeFileSync(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }): void;
