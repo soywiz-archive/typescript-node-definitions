@@ -4,7 +4,7 @@
 
 How to use:
 
-import express3 = module("express3");
+import express3 = require("express3");
 var express = require('express');
 var app:express3.Application = express();
 
