@@ -15,11 +15,11 @@ declare var global: any;
 declare var __filename: string;
 declare var __dirname: string;
 
-declare function setTimeout(callback: () => void , ms: number): any;
-declare function clearTimeout(timeoutId: any);
-declare function setInterval(callback: () => void , ms: number): any;
-declare function clearInterval(intervalId: any);
-declare function setImmediate(callback: Function , ... args: any[]): any;
+declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): Timer;
+declare function clearTimeout(timeoutId: Timer);
+declare function setInterval(callback: (...args: any[]) => void, ms: number, ...args: any[]): Timer;
+declare function clearInterval(intervalId: Timer);
+declare function setImmediate(callback: (...args: any[]) => void, ...args: any[]): any;
 declare function clearImmediate(immediateId: any);
 
 declare var require: {
@@ -151,6 +151,11 @@ declare class NodeProcess extends EventEmitter {
     uptime(): number;
     hrtime(): number[];
     hrtime(start: number[]): number[];
+}
+
+interface Timer {
+    ref(): void;
+    unref(): void;
 }
 
 // Buffer class
