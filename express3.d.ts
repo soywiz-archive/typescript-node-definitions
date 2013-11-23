@@ -12,8 +12,7 @@ var app:express3.Application = express();
 
 declare module "express3" {
     import stream = require("stream");
-    import express3 = require("express3");
-    import http = require("http")
+    import http = require("http");
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -202,10 +201,4 @@ declare module "express3" {
         httpOnly?: boolean;
         signed?: boolean;
     }
-}
-
-declare module "http" {
-    import express3 = require("express3");
-
-    export function createServer(app: any): Server;
 }
