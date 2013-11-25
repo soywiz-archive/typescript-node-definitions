@@ -15,11 +15,11 @@ declare var global: any;
 declare var __filename: string;
 declare var __dirname: string;
 
-declare function setTimeout(callback: () => void , ms: number): any;
-declare function clearTimeout(timeoutId: any);
-declare function setInterval(callback: () => void , ms: number): any;
-declare function clearInterval(intervalId: any);
-declare function setImmediate(callback: Function , ... args: any[]): any;
+declare function setTimeout(callback: (...args: any[]) => void, ms: number, ...args: any[]): Timer;
+declare function clearTimeout(timeoutId: Timer);
+declare function setInterval(callback: (...args: any[]) => void, ms: number, ...args: any[]): Timer;
+declare function clearInterval(intervalId: Timer);
+declare function setImmediate(callback: (...args: any[]) => void, ...args: any[]): any;
 declare function clearImmediate(immediateId: any);
 
 declare var require: {
@@ -151,6 +151,11 @@ declare class NodeProcess extends EventEmitter {
     uptime(): number;
     hrtime(): number[];
     hrtime(start: number[]): number[];
+}
+
+interface Timer {
+    ref(): void;
+    unref(): void;
 }
 
 // Buffer class
@@ -774,15 +779,17 @@ declare module "fs" {
     export function readSync(fd: number, buffer: NodeBuffer, offset: number, length: number, position: number): number;
     export function readFile(filename: string, encoding: string, callback: (err: Error, data: string) => void ): void;
     export function readFile(filename: string, callback: (err: Error, data: NodeBuffer) => void ): void;
-    export function readFileSync(filename: string): NodeBuffer;
-    export function readFileSync(filename: string, encoding: string): string;
-    export function writeFile(filename: string, data: any, encoding?: string, callback?: Function): void;
-    export function writeFileSync(filename: string, data: any, encoding?: string): void;
-    export function appendFile(filename: string, data: any, encoding?: string, callback?: Function): void;
-    export function appendFileSync(filename: string, data: any, encoding?: string): void;
-    export function watchFile(filename: string, listener: { curr: Stats; prev: Stats; }): void;
-    export function watchFile(filename: string, options: { persistent?: boolean; interval?: number; }, listener: { curr: Stats; prev: Stats; }): void;
-    export function unwatchFile(filename: string, listener?: Stats): void;
+    export function readFileSync(filename: string, options?: { flag?: string; }): NodeBuffer;
+    export function readFileSync(filename: string, options: { encoding: string; flag?: string; }): string;
+    export function writeFile(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }, callback?: Function): void;
+    export function writeFile(filename: string, data: any, callback: Function): void;
+    export function writeFileSync(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }): void;
+    export function appendFile(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }, callback?: Function): void;
+    export function appendFile(filename: string, data: any, callback: Function): void;
+    export function appendFileSync(filename: string, data: any, options?: { encoding?: string; mode?: number; flag?: string; }): void;
+    export function watchFile(filename: string, listener: (curr: Stats, prev: Stats)=>void): void;
+    export function watchFile(filename: string, options: { persistent?: boolean; interval?: number; }, listener: (curr: Stats, prev: Stats)=>void): void;
+    export function unwatchFile(filename: string, listener?: (curr: Stats, prev: Stats)=>void): void;
     export function watch(filename: string, options?: { persistent?: boolean; }, listener?: (event: string, filename: string) =>any): FSWatcher;
     export function exists(path: string, callback?: (exists: boolean) =>void ): void;
     export function existsSync(path: string): boolean;

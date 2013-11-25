@@ -4,7 +4,7 @@
 
 How to use:
 
-import express3 = module("express3");
+import express3 = require("express3");
 var express = require('express');
 var app:express3.Application = express();
 
@@ -12,8 +12,7 @@ var app:express3.Application = express();
 
 declare module "express3" {
     import stream = require("stream");
-    import express3 = require("express3");
-    import http = require("http")
+    import http = require("http");
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -63,12 +62,14 @@ declare module "express3" {
 
         routes: any;
 
-        listen(port: number):void;
+        listen(port: number, host?: string, callback?: Function):void;
+        listen(socket: string, callback?: Function):void;
 
-        router:(req: Request, res: Response, next?: Function) => void;
+        router:(req: Request, res: Response, next: Function) => void;
 
         // More:
-        use(item: (req: Request, res: Response, next?: Function) => void): Application;
+        use(item: (req: Request, res: Response, next: Function) => void): Application;
+        use(path: string, item: (req: Request, res: Response, next: Function) => void): Application;
 
         // connect Middlewares:
         //static(path: String): (req: Request, res: Response, next?: Function) => void;
@@ -200,10 +201,4 @@ declare module "express3" {
         httpOnly?: boolean;
         signed?: boolean;
     }
-}
-
-declare module "http" {
-    import express3 = require("express3");
-
-    export function createServer(app: any): Server;
 }
