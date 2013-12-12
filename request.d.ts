@@ -6,9 +6,9 @@
 declare module "request" {
     export = request;
 
-    import stream = module('stream');
-    import http = module('http');
-    import FormData = module('form-data');
+    import stream = require('stream');
+    import http = require('http');
+    import FormData = require('form-data');
 
     function request(uri: string, options?: request.Options, callback?: (error: any, response: any, body: any) => void ): request.Request;
     function request(uri: string, callback?: (error: any, response: any, body: any) => void ): request.Request;
@@ -78,9 +78,9 @@ declare module "request" {
             //start();
             //abort();
             pipeDest(dest);
-            setHeader(name: string, value: string, clobber?: bool): Request;
+            setHeader(name: string, value: string, clobber?: boolean): Request;
             setHeaders(headers: any): Request;
-            qs(q: any, clobber?: bool): Request;
+            qs(q: any, clobber?: boolean): Request;
             form(form: any): FormData.FormData;
             multipart(multipart: { body: any; }[]): Request;
             json(val: any): Request;
