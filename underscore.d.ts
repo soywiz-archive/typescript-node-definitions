@@ -32,8 +32,8 @@ declare module "underscore" {
 	/**
 	 * Looks through each value in the list, returning the first one that passes a truth test(iterator).The function returns as soon as it finds an acceptable element, and doesn't traverse the entire list.
 	 */
-	export function find<T>(list: T[], iterator: (item: T) => boolean, context?): number;
-	export function detect<T>(list: T[], iterator: (item: T) => boolean, context?): number;
+	export function find<T>(list: T[], iterator: (item: T) => boolean, context?): T;
+	export function detect<T>(list: T[], iterator: (item: T) => boolean, context?): T;
 
 	/**
 	 * Looks through each value in the list, returning an array of all the values that pass a truth test (iterator). Delegates to the native filter method, if it exists.
@@ -59,8 +59,9 @@ declare module "underscore" {
 	export function pluck(list : any[], propertyName : string) : any[];
 	export function max(list : any[], iterator : (item) => any, context?) : any;
 	export function min(list : any[], iterator : (item) => any, context?) : any;
-	
-	export function sortBy(list : any[], iterator : (item) => any, context?) : any[];
+  
+  export function sortBy<T>(list: T[], iterator: (item: T) => any, context?): T[];
+  export function sortBy(list: any[], iterator: (item) => any, context?): any[];
 	export function groupBy(list : any[], iterator : (item) => any) : any;
 	export function countBy(list : any[], iterator : (item) => string) : any;
 
@@ -69,10 +70,7 @@ declare module "underscore" {
 	export function toArray(list : any) : any[];
 	export function size(list : any) : number;
 
-}
-
 // Array Functions
-declare module "underscore" {
 	export function first<T>(array: T[]): T;
 	export function first<T>(array: T[], n: number): T[];
 	export function head<T>(array: T[]): T;
@@ -109,10 +107,8 @@ declare module "underscore" {
 	
 	export function range(count: number) : number[];
 	export function range(start : number, stop: number, step?: number) : number[];
-}
 
 // Function Functions
-declare module "underscore" {
 	export function bind(_function : Function, object : any, ...arguments : any[]) : () => any;
 	export function bindAll(object : any, ... methodNames : any[]) : void;
 	export function memoize(_function : Function, hashFunction? : (value : any) => any) : any;
@@ -124,10 +120,8 @@ declare module "underscore" {
 	export function after(count, _function);
 	export function wrap(_function : Function, wrapper : Function) : Function;
 	export function compose(functions : Function[]) : Function;
-}
 
 // Object Functions
-declare module "underscore" {
 	export function keys(object: any) : any[];
 	export function values(object: any) : any[];
 	export function pairs(object: any) : any[];
@@ -161,10 +155,8 @@ declare module "underscore" {
 	export function isNaN(object : any) : boolean;
 	export function isNull(object : any) : boolean;
 	export function isUndefined(object : any) : boolean;
-}
 
 // Utility Functions
-declare module "underscore" {
 	export function noConflict() : any;
 	export function identity(value: any): any;
 	export function times(n : number, iterator : (value : any) => void, context?);
@@ -174,10 +166,8 @@ declare module "underscore" {
 	export function escape(string: string) : string;
 	export function result(object: any, property: any) : any;
 	export function template(templateString: string, data?: any, settings?: any) : string;
-}
 
 // Chaining Functions
-declare module "underscore" {
 	export interface Chain {
 		// Collection
 		each(iterator: (item: any) => void, context?: any) : Chain;

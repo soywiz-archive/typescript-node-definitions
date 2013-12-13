@@ -43,7 +43,7 @@
     export interface IFileOptions extends IOptions {
         file?: string;
         dir?: string;
-        search?: bool;
+        search?: boolean;
         json_spacing?: number;
     }
 
@@ -85,10 +85,10 @@
     export interface IStore {
         type: string;
         get (key: string): any;
-        set (key: string, value: any): bool;
-        clear(key: string): bool;
-        merge(key: string, value: any): bool;
-        reset(callback?: ICallbackFunction): bool;
+        set (key: string, value: any): boolean;
+        clear(key: string): boolean;
+        merge(key: string, value: any): boolean;
+        reset(callback?: ICallbackFunction): boolean;
     }
 
 }

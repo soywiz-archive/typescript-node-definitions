@@ -38,7 +38,11 @@ declare module "aws-sdk" {
         public client: Swf.Client;
     }
 
-    
+    export class S3 {
+        constructor(options?: any);
+        public client: s3.Client;
+    }
+        
     module Sqs {
 
         export interface Client {
@@ -852,4 +856,54 @@ declare module "aws-sdk" {
 
 	}
 
+    module s3 {
+
+        export interface Client {
+            config: ClientConfig;
+
+            putObject(params: PutObjectRequest, callback: (err: any, data: any) => void );
+            getObject(params: GetObjectRequest, callback: (err: any, data: any) => void );
+        }
+        
+        export interface PutObjectRequest {
+            ACL?: string;
+            Body?: any;
+            Bucket: string;
+            CacheControl?: string;
+            ContentDisposition?: string;
+            ContentEncoding?: string;
+            ContentLanguage?: string;
+            ContentLength?: string;
+            ContentMD5?: string;
+            ContentType?: string;
+            Expires?: any;
+            GrantFullControl?: string;
+            GrantRead?: string;
+            GrantReadACP?: string;
+            GrantWriteACP?: string;
+            Key: string;
+            Metadata?: string[];
+            ServerSideEncryption?: string;
+            StorageClass?: string;
+            WebsiteRedirectLocation?: string;
+        }
+
+        export interface GetObjectRequest {
+            Bucket: string;
+            IfMatch?: string;
+            IfModifiedSince?: any;
+            IfNoneMatch?: string;
+            IfUnmodifiedSince?: any;
+            Key: string;
+            Range?: string;
+            ResponseCacheControl?: string;
+            ResponseContentDisposition?: string;
+            ResponseContentEncoding?: string;
+            ResponseContentLanguage?: string;
+            ResponseContentType?: string;
+            ResponseExpires?: any;
+            VersionId?: string;
+        }
+
+    }
 }
