@@ -70,10 +70,7 @@ declare module "underscore" {
 	export function toArray(list : any) : any[];
 	export function size(list : any) : number;
 
-//}
-
 // Array Functions
-//declare module "underscore" {
 	export function first<T>(array: T[]): T;
 	export function first<T>(array: T[], n: number): T[];
 	export function head<T>(array: T[]): T;
@@ -110,10 +107,8 @@ declare module "underscore" {
 	
 	export function range(count: number) : number[];
 	export function range(start : number, stop: number, step?: number) : number[];
-//}
 
 // Function Functions
-//declare module "underscore" {
 	export function bind(_function : Function, object : any, ...arguments : any[]) : () => any;
 	export function bindAll(object : any, ... methodNames : any[]) : void;
 	export function memoize(_function : Function, hashFunction? : (value : any) => any) : any;
@@ -125,10 +120,8 @@ declare module "underscore" {
 	export function after(count, _function);
 	export function wrap(_function : Function, wrapper : Function) : Function;
 	export function compose(functions : Function[]) : Function;
-//}
 
 // Object Functions
-//declare module "underscore" {
 	export function keys(object: any) : any[];
 	export function values(object: any) : any[];
 	export function pairs(object: any) : any[];
@@ -162,10 +155,8 @@ declare module "underscore" {
 	export function isNaN(object : any) : boolean;
 	export function isNull(object : any) : boolean;
 	export function isUndefined(object : any) : boolean;
-//}
 
 // Utility Functions
-//declare module "underscore" {
 	export function noConflict() : any;
 	export function identity(value: any): any;
 	export function times(n : number, iterator : (value : any) => void, context?);
@@ -175,10 +166,8 @@ declare module "underscore" {
 	export function escape(string: string) : string;
 	export function result(object: any, property: any) : any;
 	export function template(templateString: string, data?: any, settings?: any) : string;
-//}
 
 // Chaining Functions
-//declare module "underscore" {
 	export interface Chain {
 		// Collection
 		each(iterator: (item: any) => void, context?: any) : Chain;

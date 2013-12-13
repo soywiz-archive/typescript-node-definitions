@@ -4,16 +4,15 @@
 
 How to use:
 
-import express3 = module("express3");
+import express3 = require("express3");
 var express = require('express');
 var app:express3.Application = express();
 
 */
 
 declare module "express3" {
-	import stream = module("stream");
-	import express3 = module("express3");
-    import http = module("http")
+    import stream = require("stream");
+    import http = require("http");
     //declare function callHack(): app;
 
     //export var app: Application;
@@ -30,8 +29,8 @@ declare module "express3" {
         enable(name: String):void;
         disable(name: String):void;
 
-        enabled(name: String):bool;
-        disabled(name: String):bool;
+        enabled(name: String):boolean;
+        disabled(name: String):boolean;
 
         configure(callback: () => void):void;
         configure(env: String, callback: () => void):void;
@@ -63,12 +62,14 @@ declare module "express3" {
 
         routes: any;
 
-        listen(port: number):void;
+        listen(port: number, host?: string, callback?: Function):void;
+        listen(socket: string, callback?: Function):void;
 
-        router:(req: Request, res: Response, next?: Function) => void;
+        router:(req: Request, res: Response, next: Function) => void;
 
         // More:
-        use(item: (req: Request, res: Response, next?: Function) => void): Application;
+        use(item: (req: Request, res: Response, next: Function) => void): Application;
+        use(path: string, item: (req: Request, res: Response, next: Function) => void): Application;
 
         // connect Middlewares:
         //static(path: String): (req: Request, res: Response, next?: Function) => void;
@@ -91,21 +92,21 @@ declare module "express3" {
         accepts(type: String[]): void;
         accepted: RequestAccepted[];
 
-        is(type: String): bool;
+        is(type: String): boolean;
         ip: String;
         ips: String[];
         path: String;
         host: String;
-        fresh: bool;
-        stale: bool;
-        xhr: bool;
+        fresh: boolean;
+        stale: boolean;
+        xhr: boolean;
         protocol: String;
-        secure: bool;
+        secure: boolean;
         subdomains: String[];
         acceptedLanguages: String[];
         acceptedCharsets: String[];
-        acceptsCharset(charset: String): bool;
-        acceptsLanguage(lang: String): bool;
+        acceptsCharset(charset: String): boolean;
+        acceptsLanguage(lang: String): boolean;
     }
 
     interface RequestAccepted {
@@ -129,7 +130,7 @@ declare module "express3" {
         path?: string;
         name?: string;
         type?: string;
-        hash?: bool;
+        hash?: boolean;
         lastModifiedDate?: Date;
         _writeStream?: any;
         length?: number;
@@ -194,16 +195,10 @@ declare module "express3" {
     interface ResponseCookieOptions {
         domain?: String;
         path?: String;
-        secure?: bool;
+        secure?: boolean;
         expires?: Date;
         maxAge?: number;
-        httpOnly?: bool;
-        signed?: bool;
+        httpOnly?: boolean;
+        signed?: boolean;
     }
-}
-
-declare module "http" {
-    import express3 = module("express3");
-
-    export function createServer(app: any): Server;
 }
