@@ -11,7 +11,7 @@ You can perform pull requests improving definitions or adding new ones.
 I will add them ASAP.
 
 In order to be able to use it easily, you can create a git submodule for
-your poject adding this in the .gitmodules file:
+your project adding this in the .gitmodules file:
 
 ```
 [submodule "typescript-node-definitions"]
