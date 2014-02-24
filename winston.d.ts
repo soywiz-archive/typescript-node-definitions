@@ -1,5 +1,6 @@
-module "winston" {
+declare module "winston" {
     function log(level: string, message: string, metadata?: any);
+    function debug(message: string, metadata?: any);
     function info(message: string, metadata?: any);
     function warn(message: string, metadata?: any);
     function error(message: string, metadata?: any);
@@ -23,5 +24,5 @@ module "winston" {
         Loggly: Transport;
     }
     export var transports: Transports;
-    export var exitOnError: bool;
+    export var exitOnError: boolean;
 }
