@@ -92,6 +92,7 @@ declare module "request" {
             end(chunk);
             pause();
             resume();
+            abort();
             destroy();
             toJSON(): string;
         }
