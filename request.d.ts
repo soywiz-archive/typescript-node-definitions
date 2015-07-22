@@ -9,6 +9,7 @@ declare module "request" {
     import stream = require('stream');
     import http = require('http');
     import FormData = require('form-data');
+    import url = require('url');
 
     function request(uri: string, options?: request.Options, callback?: (error: any, response: any, body: any) => void ): request.Request;
     function request(uri: string, callback?: (error: any, response: any, body: any) => void ): request.Request;
@@ -98,9 +99,9 @@ declare module "request" {
         }
 
         export interface CookieJar {
-            add(cookie: Cookie): void;
-            get(req): Cookie;
-            cookieString(req): string;
+            setCookie(cookie: Cookie, uri: string|url.Url, options?: any): void
+            getCookieString(uri: string|url.Url)
+            getCookies(uri: string|url.Url)
         }
 
         export interface Cookie extends Array<{ name; value; httpOnly; }> {
