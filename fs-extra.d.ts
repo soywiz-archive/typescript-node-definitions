@@ -37,6 +37,7 @@ declare module "fs-extra" {
   export function copy(src: string, dest: string, filter?, callback?: Function): void;
   export function createFile(file: string, callback?: Function): void;
   export function mkdirs(dir: string, callback?: Function): void;
+  export function move(src: string, dest: string, filter?, callback?: Function): void;
   export function outputFile(file: string, data, callback?: Function): void;
   export function outputJson(file: string, data, callback?: Function): void;
   export function readJson(file, options?, callback?: Function): void;
