@@ -1,5 +1,5 @@
 declare module "memory-cache" {
-    export function put(key: any, value: any, time?: number, timeoutCallback?: (key: any) => void) : void;
+    export function put(key: any, value: any, time?: number, timeoutCallback?: (key: any, value: any) => void) : void;
     export function get(key: any): any;
     export function del(key: any): void;
     export function clear(): void;
